@@ -1,0 +1,20 @@
+time of writing,name of the test file,number of accepting traces,number or rejecting traces,depth of formula,number of variables,max length of traces,solving time,specified formula,obtained formula,comment,dt solving time,num primitive candidates,num primitives used,subset sizes,tree txt representation
+2018-05-25 13:55,traces/useCases/statePtcp/state.trace,20,40,10,12,9,/,None,/,,8.543267611999909,1,1,10,experiments/useCasesTest/state_tree.txt
+2018-05-28 13:45,traces/useCases/statePtcp/state.trace,20,40,10,27,9,/,None,/,,1.4838316369996392,1,1,10,experiments/useCasesTest/state_tree.txt
+2018-05-28 13:49,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,,66.7887969329995,2,1,10,experiments/useCasesTest/state_tree.txt
+2018-05-28 13:53,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 13:56,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 13:59,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 14:02,traces/useCases/statePtcp/state.trace,20,60,10,27,9,160.2326994920004,None,empty,
+2018-05-28 14:12,traces/useCases/statePtcp/state.trace,20,60,10,27,9,159.6534774189995,None,empty,
+2018-05-28 14:32,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 14:36,traces/useCases/statePtcp/state.trace,20,60,10,27,9,159.8857243909988,None,empty,
+2018-05-28 15:50,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 15:55,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 16:00,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 16:09,traces/useCases/statePtcp/state.trace,20,40,10,27,9,/,None,/,
+2018-05-28 16:12,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 16:18,traces/useCases/statePtcp/state.trace,20,60,10,27,9,/,None,/,
+2018-05-28 16:32,traces/useCases/statePtcp/state.trace,20,80,10,27,9,/,None,/,
+2018-05-28 16:49,traces/useCases/statePtcp/state.trace,20,80,10,27,9,/,None,/,
+2018-05-28 16:58,traces/useCases/statePtcp/state.trace,20,80,10,27,9,/,None,/,

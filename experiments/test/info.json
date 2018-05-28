@@ -1,0 +1,1 @@
+{"traces": "traces/generatedTest/", "name": "test", "timeout": 600, "satEncoding": "dag", "iterationStartValue": 3, "iterationStep": 3}

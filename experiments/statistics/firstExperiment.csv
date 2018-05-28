@@ -1,0 +1,71 @@
+time of writing,name of the test file,number of accepting traces,number or rejecting traces,depth of formula,number of variables,max length of traces,solving time,specified formula,obtained formula,comment
+2018-02-03 10:19,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++5.trace",10,6,3,3,5,26.11493429800612,"->(F(x1),U(!(x0),x1))","|(U(->(x0,x2),&(x1,x2)),->(F(x1),x1))",
+2018-02-03 10:19,"traces/generated/universality+->(F(x1), U(x0, x1))
++5.trace",15,6,2,3,5,3.072681564000959,"->(F(x1),U(x0,x1))","U(x0,x1)",
+2018-02-03 10:22,"traces/generated/abscence+G(->(x1, G(!(x0))))+10.trace",11,76,4,3,5,171.61838109100063,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-02-03 10:32,"traces/generated/universality+->(F(x1), U(x0, x1))
++500.trace",1205,501,2,3,5,/,"->(F(x1),U(x0,x1))",/,timeout
+2018-02-03 10:34,"traces/generated/universality+->(F(x1), U(x0, x1))
++50.trace",111,51,2,3,5,94.13490595799522,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-02-03 10:34,"traces/generated/universality+G(x0)
++50.trace",17,483,1,2,5,49.99643821299833,G(x0),G(x0),
+2018-02-03 10:44,"traces/generated/universality+G(->(x1, G(x0)))+150.trace",143,1357,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-02-03 10:54,"traces/generated/universality+G(->(x1, G(x0)))+500.trace",431,4569,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-02-03 11:04,"traces/generated/abscence+G(->(x1, G(!(x0))))+150.trace",132,1368,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-02-03 11:08,"traces/generated/abscence+G(!(x0))
++50.trace",15,485,2,2,5,207.10222660499858,G(!(x0)),G(!(x0)),
+2018-02-03 11:18,"traces/generated/universality+G(->(x1, G(x0)))+200.trace",174,1826,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-02-03 11:28,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++100.trace",250,101,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-02-03 11:38,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++500.trace",1112,501,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-02-03 11:48,"traces/generated/abscence+G(->(x1, G(!(x0))))+100.trace",101,889,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-02-03 11:48,"traces/generated/universality+G(x0)
++10.trace",2,98,1,2,5,10.191042919999745,G(x0),G(x0),
+2018-02-03 11:49,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++10.trace",11,11,3,3,5,36.30857120399742,"->(F(x1),U(!(x0),x1))","->(F(X(x1)),&(U(x2,x1),->(x0,x1)))",
+2018-02-03 11:51,"traces/generated/universality+G(x0)
++100.trace",40,960,1,2,5,100.73347329899843,G(x0),G(x0),
+2018-02-03 11:53,"traces/generated/universality+G(x0)
++150.trace",53,1447,1,2,5,149.67313482399913,G(x0),G(x0),
+2018-02-03 11:53,"traces/generated/universality+G(x0)
++5.trace",2,48,1,2,5,5.044310778997897,G(x0),G(x0),
+2018-02-03 12:00,"traces/generated/universality+->(F(x1), U(x0, x1))
++200.trace",450,201,2,3,5,387.1935525850058,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-02-03 12:01,"traces/generated/universality+G(->(x1, G(x0)))+10.trace",5,95,3,3,5,57.00833037499979,"G(->(x1,G(x0)))","->(F(x1),G(x0))",
+2018-02-03 12:05,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++50.trace",89,51,3,3,5,230.29349965400615,"->(F(x1),U(!(x0),x1))","|(->(F(x1),|(x1,x1)),U(->(x0,x1),U(x1,x1)))",
+2018-02-03 12:15,"traces/generated/universality+G(->(x1, G(x0)))+100.trace",85,915,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-02-03 12:19,"traces/generated/universality+->(F(x1), U(x0, x1))
++100.trace",262,101,2,3,5,212.9928394170056,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-02-03 12:20,"traces/generated/universality+->(F(x1), U(x0, x1))
++10.trace",43,11,2,3,5,31.020032791995618,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-02-03 12:30,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++150.trace",315,151,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-02-03 12:40,"traces/generated/abscence+G(!(x0))
++150.trace",51,1449,2,2,5,/,G(!(x0)),/,timeout
+2018-02-03 12:50,"traces/generated/abscence+G(->(x1, G(!(x0))))+50.trace",42,458,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-02-03 12:57,"traces/generated/abscence+G(!(x0))
++100.trace",34,966,2,2,5,415.0493678040002,G(!(x0)),G(!(x0)),
+2018-02-03 13:07,"traces/generated/abscence+->(F(x1), U(!(x0),x1))
++200.trace",524,201,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-02-03 13:07,"traces/generated/universality+G(->(x1, G(x0)))+5.trace",4,46,3,3,5,29.174520079002832,"G(->(x1,G(x0)))","->(F(x1),G(x0))",
+2018-02-03 13:17,"traces/generated/abscence+G(!(x0))
++500.trace",149,4851,2,2,5,/,G(!(x0)),/,timeout
+2018-02-03 13:27,"traces/generated/abscence+G(->(x1, G(!(x0))))+500.trace",407,4593,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-02-03 13:37,"traces/generated/universality+G(->(x1, G(x0)))+50.trace",49,451,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-02-03 13:39,"traces/generated/abscence+G(->(x1, G(!(x0))))+5.trace",6,42,4,3,5,85.54245341299975,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-02-03 13:48,"traces/generated/universality+G(x0)
++500.trace",148,4852,1,2,5,498.67078289600613,G(x0),G(x0),
+2018-02-03 13:48,"traces/generated/abscence+G(!(x0))
++5.trace",4,46,2,2,5,20.899353221000638,G(!(x0)),"->(F(x0),G(x1))",
+2018-02-03 13:53,"traces/generated/universality+->(F(x1), U(x0, x1))
++150.trace",381,151,2,3,5,308.4225808070041,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-02-03 14:03,"traces/generated/abscence+G(!(x0))
++200.trace",57,1943,2,2,5,/,G(!(x0)),/,timeout
+2018-02-03 14:07,"traces/generated/universality+G(x0)
++200.trace",68,1932,1,2,5,199.03090384000097,G(x0),G(x0),
+2018-02-03 14:08,"traces/generated/abscence+G(!(x0))
++10.trace",4,96,2,2,5,41.80637633299921,G(!(x0)),!(F(x0)),
+2018-02-03 14:18,"traces/generated/abscence+G(->(x1, G(!(x0))))+200.trace",190,1810,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout

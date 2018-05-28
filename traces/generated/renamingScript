@@ -1,0 +1,6 @@
+COUNTER = 0
+for file in *.trace
+do
+  mv "$file" "test_{$COUNTER}.trace"
+  $COUNTER = $COUNTER+1
+done

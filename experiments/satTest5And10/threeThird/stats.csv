@@ -1,0 +1,34 @@
+time of writing,name of the test file,number of accepting traces,number or rejecting traces,depth of formula,number of variables,max length of traces,specified formula,solving time sat,obtained formula sat,comment sat
+2018-05-22 19:17,traces/generated/5to10threethree/0191.trace,37,175,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600
+2018-05-22 19:27,traces/generated/5to10threethree/0187.trace,20,125,3,3,10,"G(->(x1,G(x0)))",341.5229397700168,"G(->(x1,G(x0)))",
+2018-05-22 19:32,traces/generated/5to10threethree/0176.trace,5,5,3,3,5,"G(->(x1,G(x0)))",1.197161216987297,"&(X(x0),x0)",
+2018-05-22 19:32,traces/generated/5to10threethree/0190.trace,175,175,3,3,5,"G(->(x1,G(x0)))",251.3189983139746,"G(->(x1,G(x0)))",
+2018-05-22 19:36,traces/generated/5to10threethree/0186.trace,125,125,3,3,5,"G(->(x1,G(x0)))",281.07806096295826,"G(->(x1,G(x0)))",
+2018-05-22 19:41,traces/generated/5to10threethree/0177.trace,3,5,3,3,10,"G(->(x1,G(x0)))",6.827034715097398,"!(U(x0,x1))",
+2018-05-22 19:41,traces/generated/5to10threethree/0193.trace,39,200,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600
+2018-05-22 19:51,traces/generated/5to10threethree/0178.trace,25,25,3,3,5,"G(->(x1,G(x0)))",40.23537466698326,"G(->(x1,G(x0)))",
+2018-05-22 19:52,traces/generated/5to10threethree/0185.trace,20,100,3,3,10,"G(->(x1,G(x0)))",257.4234579850454,"G(->(x1,G(x0)))",
+2018-05-22 19:56,traces/generated/5to10threethree/0174.trace,250,250,2,3,5,"->(F(x1),U(x0,x1))",440.83606086997315,"->(F(x1),U(x0,x1))",
+2018-05-22 20:04,traces/generated/5to10threethree/0189.trace,24,150,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600
+2018-05-22 20:14,traces/generated/5to10threethree/0192.trace,200,200,3,3,5,"G(->(x1,G(x0)))",437.06079833512194,"G(->(x1,G(x0)))",
+2018-05-22 20:21,traces/generated/5to10threethree/0184.trace,100,100,3,3,5,"G(->(x1,G(x0)))",180.10596164688468,"G(->(x1,G(x0)))",
+2018-05-22 20:24,traces/generated/5to10threethree/0179.trace,6,25,3,3,10,"G(->(x1,G(x0)))",88.08796744397841,"G(->(x1,G(x0)))",
+2018-05-22 20:25,traces/generated/5to10threethree/0188.trace,150,150,3,3,5,"G(->(x1,G(x0)))",365.93769026803784,"G(->(x1,G(x0)))",
+2018-05-22 20:32,traces/generated/5to10threethree/0175.trace,250,250,2,3,10,"->(F(x1),U(x0,x1))",139.11423251894303,"U(x0,x1)",
+2018-05-22 20:34,traces/generated/5to10threethree/0195.trace,44,225,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600
+2018-05-22 20:44,traces/generated/5to10threethree/0168.trace,175,175,2,3,5,"->(F(x1),U(x0,x1))",284.1370065791998,"->(F(x1),U(x0,x1))",
+2018-05-22 20:49,traces/generated/5to10threethree/0172.trace,225,225,2,3,5,"->(F(x1),U(x0,x1))",438.9435834658798,"U(x0,->(F(x1),x1))",
+2018-05-22 20:56,traces/generated/5to10threethree/0183.trace,19,75,3,3,10,"G(->(x1,G(x0)))",267.34360852395184,"G(->(x1,G(x0)))",
+2018-05-22 21:01,traces/generated/5to10threethree/0165.trace,125,125,2,3,10,"->(F(x1),U(x0,x1))",68.45030904491432,"U(x0,x1)",
+2018-05-22 21:02,traces/generated/5to10threethree/0169.trace,175,175,2,3,10,"->(F(x1),U(x0,x1))",97.59474345901981,"U(x0,x1)",
+2018-05-22 21:03,traces/generated/5to10threethree/0194.trace,225,225,3,3,5,"G(->(x1,G(x0)))",476.7926829829812,"G(->(x1,G(x0)))",
+2018-05-22 21:11,traces/generated/5to10threethree/0173.trace,225,225,2,3,10,"->(F(x1),U(x0,x1))",/,/,timeout: 600
+2018-05-22 21:21,traces/generated/5to10threethree/0182.trace,75,75,3,3,5,"G(->(x1,G(x0)))",109.25665703299455,"G(->(x1,G(x0)))",
+2018-05-22 21:23,traces/generated/5to10threethree/0166.trace,150,150,2,3,5,"->(F(x1),U(x0,x1))",246.8896494130604,"U(x0,->(F(x1),x1))",
+2018-05-22 21:27,traces/generated/5to10threethree/0197.trace,51,250,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600
+2018-05-22 21:37,traces/generated/5to10threethree/0170.trace,200,200,2,3,5,"->(F(x1),U(x0,x1))",353.6830849079415,"U(x0,->(F(x1),x1))",
+2018-05-22 21:43,traces/generated/5to10threethree/0181.trace,13,50,3,3,10,"G(->(x1,G(x0)))",173.59852447011508,"G(->(x1,G(x0)))",
+2018-05-22 21:46,traces/generated/5to10threethree/0167.trace,150,150,2,3,10,"->(F(x1),U(x0,x1))",83.06842809193768,"U(x0,x1)",
+2018-05-22 21:47,traces/generated/5to10threethree/0196.trace,250,250,3,3,5,"G(->(x1,G(x0)))",530.7418820799794,"G(->(x1,G(x0)))",
+2018-05-22 21:56,traces/generated/5to10threethree/0171.trace,200,200,2,3,10,"->(F(x1),U(x0,x1))",110.83159148995765,"U(x0,x1)",
+2018-05-22 21:58,traces/generated/5to10threethree/0180.trace,50,50,3,3,5,"G(->(x1,G(x0)))",70.79732318897732,"G(->(x1,G(x0)))",

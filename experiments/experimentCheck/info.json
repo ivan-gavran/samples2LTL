@@ -1,0 +1,1 @@
+{"traces": "traces/generated/temp/", "name": "experimentCheck", "timeout": 600, "satEncoding": "poly", "dt": {"decrease": "0.35", "sampling_strategy": "1", "subset_size": "3"}}

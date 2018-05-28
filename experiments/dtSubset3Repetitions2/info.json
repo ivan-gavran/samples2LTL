@@ -1,0 +1,1 @@
+{"traces": "traces/generated/5to10Traces/", "name": "dtSubset3Repetitions2", "timeout": 600, "satEncoding": "poly", "iterationStartValue": 1, "iterationStep": 3, "dt": {"decrease": 0.5, "sampling_strategy": "1", "subset_size": "3", "repetitions_inside_sampling": "2"}}

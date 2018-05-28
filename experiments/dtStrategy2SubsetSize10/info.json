@@ -1,0 +1,1 @@
+{"traces": "traces/generated/freshTests/", "name": "dtStrategy2SubsetSize10", "timeout": 600, "satEncoding": "poly", "dt": {"decrease": 0.5, "sampling_strategy": 2, "subset_size": 10}}

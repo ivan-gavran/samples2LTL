@@ -1,0 +1,11 @@
+.project
+.cache/
+.pydevproject
+smtEncoding/__pycache__
+traces/generatedTest/
+log/
+**~
+**.pyc
+**.aux
+**.gz
+**.log

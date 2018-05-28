@@ -1,0 +1,14 @@
+boto==2.48.0
+graphviz==0.8.2
+lark-parser==0.5.3
+numpy==1.14.2
+pandas==0.22.0
+pkg-resources==0.0.0
+py==1.4.34
+pytest==3.2.3
+python-dateutil==2.7.2
+pytictoc==1.4.0
+pytz==2018.4
+scikit-learn==0.19.1
+scipy==1.0.1
+six==1.11.0

@@ -1,0 +1,211 @@
+time of writing,name of the test file,number of accepting traces,number or rejecting traces,depth of formula,number of variables,max length of traces,solving time,specified formula,obtained formula,comment
+2018-03-13 03:01,"traces/generated/moreDetailedTest/existence+F(x0)
++5.trace",5,5,1,2,5,1.006071848,F(x0),F(x0),
+2018-03-12 22:41,"traces/generated/moreDetailedTest/universality+G(x0)
++5.trace",5,5,1,2,5,1.007002475,G(x0),G(x0),
+2018-03-13 03:49,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+5.trace",1,5,6,4,5,1.162285959,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",G(x0),
+2018-03-12 17:35,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++5.trace",5,5,2,3,5,1.451533684,"->(F(x1),U(x0,x1))","U(x0,x1)",
+2018-03-12 17:55,"traces/generated/moreDetailedTest/existence+F(x0)
++10.trace",10,9,1,2,5,1.943849775,F(x0),F(x0),
+2018-03-12 22:10,"traces/generated/moreDetailedTest/universality+G(x0)
++10.trace",10,10,1,2,5,1.989937239,G(x0),G(x0),
+2018-03-12 23:35,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++10.trace",10,10,2,3,5,2.890494833,"->(F(x1),U(x0,x1))","U(x0,x1)",
+2018-03-13 03:36,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+10.trace",7,10,6,4,5,3.284072565,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",G(x0),
+2018-03-13 03:03,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++5.trace",5,5,2,2,5,4.377569123,G(!(x0)),G(!(x0)),
+2018-03-12 17:35,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++5.trace",5,5,3,3,5,5.701827467,"->(F(x1),U(!(x0),x1))","U(->(x0,x1),x1)",
+2018-03-13 01:36,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+5.trace",5,5,3,3,5,5.861032097,"G(->(x1,G(x0)))",X(G(x0)),
+2018-03-12 22:52,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++5.trace",5,5,4,3,5,6.048665348,"|(G(!(x0)),F(&(x0,F(x1))))","U(F(x1),&(x1,x0))",
+2018-03-13 03:39,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++10.trace",10,10,2,2,5,8.565820248,G(!(x0)),"->(F(x0),G(x0))",
+2018-03-12 23:23,"traces/generated/moreDetailedTest/existence+F(x0)
++50.trace",50,50,1,2,5,9.94960636,F(x0),F(x0),
+2018-03-12 19:01,"traces/generated/moreDetailedTest/universality+G(x0)
++50.trace",50,50,1,2,5,10.067037615,G(x0),G(x0),
+2018-03-12 22:10,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++10.trace",10,10,3,3,5,11.695938582,"->(F(x1),U(!(x0),x1))","U(!(x0),&(x1,x1))",
+2018-03-12 22:52,"traces/generated/moreDetailedTest/universality+G(x0)
++75.trace",75,75,1,2,5,15.152747555,G(x0),G(x0),
+2018-03-12 23:55,"traces/generated/moreDetailedTest/existence+F(x0)
++75.trace",75,75,1,2,5,15.211158959,F(x0),F(x0),
+2018-03-13 02:58,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+5.trace",5,5,4,3,5,15.564886574,"G(->(x1,G(!(x0))))","U(->(&(x0,x0),!(x1)),!(F(x0)))",
+2018-03-12 17:56,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+50.trace",36,50,6,4,5,16.169452543,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",G(x0),
+2018-03-12 20:40,"traces/generated/moreDetailedTest/existence+F(x0)
++100.trace",100,100,1,2,5,19.760976318,F(x0),F(x0),
+2018-03-12 22:11,"traces/generated/moreDetailedTest/universality+G(x0)
++100.trace",100,100,1,2,5,19.790230108,G(x0),G(x0),
+2018-03-13 01:17,"traces/generated/moreDetailedTest/universality+G(x0)
++125.trace",125,125,1,2,5,24.918276107,G(x0),G(x0),
+2018-03-12 19:01,"traces/generated/moreDetailedTest/existence+F(x0)
++125.trace",125,125,1,2,5,24.952961402,F(x0),F(x0),
+2018-03-12 22:11,"traces/generated/moreDetailedTest/universality+G(x0)
++150.trace",150,150,1,2,5,29.927564603,G(x0),G(x0),
+2018-03-13 03:36,"traces/generated/moreDetailedTest/existence+F(x0)
++150.trace",150,150,1,2,5,30.04200417,F(x0),F(x0),
+2018-03-12 22:47,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+10.trace",10,10,3,3,5,32.147663577,"G(->(x1,G(x0)))","G(->(U(x2,x1),G(x0)))",
+2018-03-12 22:57,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++10.trace",10,10,4,3,5,32.588277275,"|(G(!(x0)),F(&(x0,F(x1))))","U(U(->(x1,x0),|(x0,x1)),&(|(x0,x2),X(x1)))",
+2018-03-12 18:16,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+10.trace",10,10,4,3,5,33.950876675,"G(->(x1,G(!(x0))))","->(->(x0,U(x2,x1)),->(F(x0),G(x2)))",
+2018-03-13 00:57,"traces/generated/moreDetailedTest/existence+F(x0)
++175.trace",175,175,1,2,5,35.07800329,F(x0),F(x0),
+2018-03-12 23:56,"traces/generated/moreDetailedTest/universality+G(x0)
++175.trace",175,175,1,2,5,35.230667257,G(x0),G(x0),
+2018-03-13 03:36,"traces/generated/moreDetailedTest/universality+G(x0)
++200.trace",200,200,1,2,5,39.671468801,G(x0),G(x0),
+2018-03-12 22:46,"traces/generated/moreDetailedTest/existence+F(x0)
++200.trace",200,200,1,2,5,39.98638425,F(x0),F(x0),
+2018-03-12 20:21,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++50.trace",50,50,2,2,5,41.900663241,G(!(x0)),"->(F(x0),G(x1))",
+2018-03-13 03:39,"traces/generated/moreDetailedTest/existence+F(x0)
++250.trace",250,250,1,2,5,49.526351267,F(x0),F(x0),
+2018-03-13 03:31,"traces/generated/moreDetailedTest/universality+G(x0)
++250.trace",250,250,1,2,5,50.42121991,G(x0),G(x0),
+2018-03-12 18:50,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++50.trace",50,50,2,3,5,57.496749351,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 19:02,"traces/generated/moreDetailedTest/existence+F(x0)
++300.trace",300,300,1,2,5,59.811939245,F(x0),F(x0),
+2018-03-12 22:56,"traces/generated/moreDetailedTest/universality+G(x0)
++300.trace",300,300,1,2,5,60.219994424,G(x0),G(x0),
+2018-03-13 02:35,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++75.trace",75,75,2,2,5,62.912890591,G(!(x0)),G(!(x0)),
+2018-03-12 20:21,"traces/generated/moreDetailedTest/existence+F(x0)
++350.trace",350,350,1,2,5,69.607613732,F(x0),F(x0),
+2018-03-13 03:38,"traces/generated/moreDetailedTest/universality+G(x0)
++350.trace",350,350,1,2,5,70.054400501,G(x0),G(x0),
+2018-03-13 03:35,"traces/generated/moreDetailedTest/existence+F(x0)
++400.trace",400,400,1,2,5,79.952157573,F(x0),F(x0),
+2018-03-12 21:24,"traces/generated/moreDetailedTest/universality+G(x0)
++400.trace",400,400,1,2,5,80.755586565,G(x0),G(x0),
+2018-03-13 00:44,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++100.trace",100,100,2,2,5,85.506825889,G(!(x0)),G(!(x0)),
+2018-03-12 18:05,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++75.trace",75,75,2,3,5,90.550082209,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-13 03:02,"traces/generated/moreDetailedTest/universality+G(x0)
++500.trace",500,500,1,2,5,99.633136933,G(x0),G(x0),
+2018-03-12 22:06,"traces/generated/moreDetailedTest/existence+F(x0)
++500.trace",500,500,1,2,5,100.547892108,F(x0),F(x0),
+2018-03-13 00:56,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++125.trace",125,125,2,2,5,103.7262537309,G(!(x0)),G(!(x0)),
+2018-03-12 23:35,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++100.trace",100,100,2,3,5,115.801635114,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-13 00:07,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++150.trace",150,150,2,2,5,125.702781663,G(!(x0)),G(!(x0)),
+2018-03-13 00:30,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++175.trace",175,175,2,2,5,144.832375921,G(!(x0)),G(!(x0)),
+2018-03-13 03:01,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++125.trace",125,125,2,3,5,149.684376604,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 22:55,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++50.trace",50,50,3,3,5,166.54939043,"->(F(x1),U(!(x0),x1))","U(|(!(x0),&(x2,x1)),->(F(x1),x1))",
+2018-03-13 03:34,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++200.trace",200,200,2,2,5,166.592156107,G(!(x0)),G(!(x0)),
+2018-03-13 00:43,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+50.trace",50,50,4,3,5,169.510626939,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-03-13 02:48,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+50.trace",50,50,3,3,5,170.822651973,"G(->(x1,G(x0)))","G(|(G(x0),!(x1)))",
+2018-03-13 03:20,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++150.trace",150,150,2,3,5,177.973598775,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 20:35,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++175.trace",175,175,2,3,5,206.449071798,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 19:10,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++250.trace",250,250,2,2,5,210.212369694,G(!(x0)),!(F(x0)),
+2018-03-12 22:45,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++200.trace",200,200,2,3,5,235.36830667,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 22:10,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+75.trace",75,75,3,3,5,238.825794697,"G(->(x1,G(x0)))","G(->(x1,G(x0)))",
+2018-03-12 20:39,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++300.trace",300,300,2,2,5,248.858710379,G(!(x0)),G(!(x0)),
+2018-03-13 03:17,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+75.trace",75,75,4,3,5,251.303009845,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-03-12 21:22,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++75.trace",75,75,3,3,5,255.836074937,"->(F(x1),U(!(x0),x1))","->(F(&(x1,x1)),U(->(x0,x1),x1))",
+2018-03-12 19:07,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++350.trace",350,350,2,2,5,291.753975558,G(!(x0)),G(!(x0)),
+2018-03-12 22:52,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++250.trace",250,250,2,3,5,294.999462228,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 23:23,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+100.trace",100,100,3,3,5,324.171635873,"G(->(x1,G(x0)))","G(->(&(x1,x1),G(x0)))",
+2018-03-12 18:49,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++400.trace",400,400,2,2,5,336.785088585,G(!(x0)),G(!(x0)),
+2018-03-12 21:30,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++100.trace",100,100,3,3,5,350.41262873,"->(F(x1),U(!(x0),x1))","|(U(!(x0),x1),->(F(x1),&(x0,x1)))",
+2018-03-13 04:02,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++300.trace",300,300,2,3,5,355.623422184,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 22:04,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+100.trace",100,100,4,3,5,360.50305849,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-03-12 18:43,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++350.trace",350,350,2,3,5,409.342443529,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-13 01:54,"traces/generated/moreDetailedTest/abscence+G(!(x0))
++500.trace",500,500,2,2,5,418.892232567,G(!(x0)),G(!(x0)),
+2018-03-13 03:56,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+125.trace",125,125,3,3,5,420.110216009,"G(->(x1,G(x0)))","G(->(x1,G(x0)))",
+2018-03-12 21:58,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++125.trace",125,125,3,3,5,442.454170627,"->(F(x1),U(!(x0),x1))","->(U(x1,F(x1)),U(->(x0,x1),|(x1,x1)))",
+2018-03-12 20:58,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++400.trace",400,400,2,3,5,466.579095725,"->(F(x1),U(x0,x1))","->(F(x1),U(x0,x1))",
+2018-03-12 18:04,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+125.trace",125,125,4,3,5,468.01473102,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-03-13 01:26,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++50.trace",50,50,4,3,5,493.327000923,"|(G(!(x0)),F(&(x0,F(x1))))","|(U(|(x1,X(x0)),->(F(x0),G(x1))),U(|(F(x1),U(x2,x1)),&(|(x0,x0),F(x1))))",
+2018-03-13 00:05,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++150.trace",150,150,3,3,5,500.331620455,"->(F(x1),U(!(x0),x1))","U(|(->(x0,x1),G(x1)),->(F(x1),|(x1,x1)))",
+2018-03-12 19:29,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+150.trace",150,150,3,3,5,509.146583209,"G(->(x1,G(x0)))","G(|(G(x0),!(x1)))",
+2018-03-12 21:40,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+175.trace",175,175,3,3,5,564.670197021,"G(->(x1,G(x0)))","G(->(x1,G(x0)))",
+2018-03-12 20:19,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+150.trace",150,150,4,3,5,571.525514795,"G(->(x1,G(!(x0))))","G(->(F(x0),!(x1)))",
+2018-03-12 17:45,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+400.trace",400,400,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-12 17:55,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+350.trace",213,350,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 18:15,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++175.trace",175,175,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-12 18:26,"traces/generated/moreDetailedTest/universality+->(F(x1), U(x0, x1))
++500.trace",500,500,2,3,5,/,"->(F(x1),U(x0,x1))",/,timeout
+2018-03-12 18:36,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+125.trace",80,125,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 19:00,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++75.trace",75,75,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-12 19:20,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+400.trace",317,400,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 19:39,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+350.trace",350,350,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-12 19:49,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++250.trace",250,250,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-12 19:59,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+500.trace",500,500,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-12 20:09,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+75.trace",52,75,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 20:31,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++500.trace",500,500,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-12 20:50,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++400.trace",400,400,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-12 21:08,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+200.trace",200,200,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-12 21:18,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+300.trace",300,300,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-12 21:50,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++500.trace",500,500,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-12 22:21,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+300.trace",174,300,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 22:31,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+300.trace",300,300,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-12 22:41,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++250.trace",250,250,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-12 23:07,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++175.trace",175,175,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-12 23:17,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+175.trace",175,175,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-12 23:33,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+500.trace",331,500,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 23:45,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+200.trace",124,200,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-12 23:55,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+250.trace",250,250,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-13 00:17,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+350.trace",350,350,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-13 00:27,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++125.trace",125,125,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 00:40,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++350.trace",350,350,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-13 00:54,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++100.trace",100,100,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 01:07,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++200.trace",200,200,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-13 01:17,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+100.trace",70,100,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-13 01:36,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++150.trace",150,150,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 01:46,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+250.trace",250,250,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-13 02:04,"traces/generated/moreDetailedTest/abscence+->(F(x1), U(!(x0),x1))
++300.trace",300,300,3,3,5,/,"->(F(x1),U(!(x0),x1))",/,timeout
+2018-03-13 02:14,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+500.trace",500,500,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout
+2018-03-13 02:24,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++300.trace",300,300,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 02:34,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+250.trace",155,250,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-13 02:45,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+150.trace",107,150,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-13 02:58,"traces/generated/moreDetailedTest/existence+G(&(x0,->(!(x1),U(!(x1),&(x2, !(x1))))))+175.trace",116,175,6,4,5,/,"G(&(x0,->(!(x1),U(!(x1),&(x2,!(x1))))))",/,timeout
+2018-03-13 03:13,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++200.trace",200,200,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 03:30,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++400.trace",400,400,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 03:49,"traces/generated/moreDetailedTest/existence+|(G(!(x0)),F(&(x0, F(x1))))
++350.trace",350,350,4,3,5,/,"|(G(!(x0)),F(&(x0,F(x1))))",/,timeout
+2018-03-13 04:12,"traces/generated/moreDetailedTest/universality+G(->(x1, G(x0)))+400.trace",400,400,3,3,5,/,"G(->(x1,G(x0)))",/,timeout
+2018-03-13 04:22,"traces/generated/moreDetailedTest/abscence+G(->(x1, G(!(x0))))+200.trace",200,200,4,3,5,/,"G(->(x1,G(!(x0))))",/,timeout

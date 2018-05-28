@@ -1,0 +1,190 @@
+2018-05-23 01:05,traces/generated/5to10OneThree/0022.trace,5,5,3,3,5,"->(F(x1),U(!(x0),x1))",1.0787991127,"|(x1,X(x1))",,50
+2018-05-23 01:05,traces/generated/5to10OneThree/0022.trace,5,5,3,3,5,"->(F(x1),U(!(x0),x1))",1.0787991127,"|(x1,X(x1))",,50
+2018-05-22 19:50,traces/generated/5to10OneThree/0024.trace,25,25,3,3,5,"->(F(x1),U(!(x0),x1))",108.6956572207,"U(->(x0,G(x0)),|(x1,G(x0)))",,250
+2018-05-22 19:50,traces/generated/5to10OneThree/0024.trace,25,25,3,3,5,"->(F(x1),U(!(x0),x1))",108.6956572207,"U(->(x0,G(x0)),|(x1,G(x0)))",,250
+2018-05-22 21:32,traces/generated/5to10OneThree/0026.trace,50,50,3,3,5,"->(F(x1),U(!(x0),x1))",257.9624107792,"U(->(x0,x1),->(F(x1),x1))",,500
+2018-05-22 21:32,traces/generated/5to10OneThree/0026.trace,50,50,3,3,5,"->(F(x1),U(!(x0),x1))",257.9624107792,"U(->(x0,x1),->(F(x1),x1))",,500
+2018-05-22 19:37,traces/generated/5to10OneThree/0028.trace,75,75,3,3,5,"->(F(x1),U(!(x0),x1))",483.5943800383,"U(->(x0,x1),->(F(x1),x1))",,750
+2018-05-22 19:37,traces/generated/5to10OneThree/0028.trace,75,75,3,3,5,"->(F(x1),U(!(x0),x1))",483.5943800383,"U(->(x0,x1),->(F(x1),x1))",,750
+2018-05-22 20:12,traces/generated/5to10OneThree/0032.trace,125,125,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1250
+2018-05-22 21:56,traces/generated/5to10OneThree/0030.trace,100,100,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1000
+2018-05-22 22:18,traces/generated/5to10OneThree/0042.trace,250,250,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2500
+2018-05-22 23:48,traces/generated/5to10OneThree/0036.trace,175,175,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1750
+2018-05-23 00:18,traces/generated/5to10OneThree/0040.trace,225,225,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2250
+2018-05-23 01:22,traces/generated/5to10OneThree/0034.trace,150,150,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1500
+2018-05-23 01:44,traces/generated/5to10OneThree/0038.trace,200,200,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2000
+2018-05-22 20:12,traces/generated/5to10OneThree/0032.trace,125,125,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1250
+2018-05-22 21:56,traces/generated/5to10OneThree/0030.trace,100,100,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1000
+2018-05-22 22:18,traces/generated/5to10OneThree/0042.trace,250,250,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2500
+2018-05-22 23:48,traces/generated/5to10OneThree/0036.trace,175,175,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1750
+2018-05-23 00:18,traces/generated/5to10OneThree/0040.trace,225,225,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2250
+2018-05-23 01:22,traces/generated/5to10OneThree/0034.trace,150,150,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,1500
+2018-05-23 01:44,traces/generated/5to10OneThree/0038.trace,200,200,3,3,5,"->(F(x1),U(!(x0),x1))",/,/,timeout: 600,2000
+2018-05-23 00:18,traces/generated/5to10OneThree/0023.trace,5,5,3,3,10,"->(F(x1),U(!(x0),x1))",8.3359774472,"U(->(x0,x1),x1)",,100
+2018-05-23 00:18,traces/generated/5to10OneThree/0023.trace,5,5,3,3,10,"->(F(x1),U(!(x0),x1))",8.3359774472,"U(->(x0,x1),x1)",,100
+2018-05-22 19:19,traces/generated/5to10OneThree/0025.trace,25,25,3,3,10,"->(F(x1),U(!(x0),x1))",42.448481624,"U(!(x0),x1)",,500
+2018-05-22 19:19,traces/generated/5to10OneThree/0025.trace,25,25,3,3,10,"->(F(x1),U(!(x0),x1))",42.448481624,"U(!(x0),x1)",,500
+2018-05-22 20:43,traces/generated/5to10OneThree/0027.trace,50,50,3,3,10,"->(F(x1),U(!(x0),x1))",86.1194254719,"U(!(x0),x1)",,1000
+2018-05-22 20:43,traces/generated/5to10OneThree/0027.trace,50,50,3,3,10,"->(F(x1),U(!(x0),x1))",86.1194254719,"U(!(x0),x1)",,1000
+2018-05-22 19:14,traces/generated/5to10OneThree/0029.trace,75,75,3,3,10,"->(F(x1),U(!(x0),x1))",130.7701902888,"U(!(x0),x1)",,1500
+2018-05-22 19:14,traces/generated/5to10OneThree/0029.trace,75,75,3,3,10,"->(F(x1),U(!(x0),x1))",130.7701902888,"U(!(x0),x1)",,1500
+2018-05-22 20:58,traces/generated/5to10OneThree/0031.trace,100,100,3,3,10,"->(F(x1),U(!(x0),x1))",170.0726864859,"U(->(x0,x1),x1)",,2000
+2018-05-22 20:58,traces/generated/5to10OneThree/0031.trace,100,100,3,3,10,"->(F(x1),U(!(x0),x1))",170.0726864859,"U(->(x0,x1),x1)",,2000
+2018-05-22 19:33,traces/generated/5to10OneThree/0033.trace,125,125,3,3,10,"->(F(x1),U(!(x0),x1))",209.9510419173,"U(->(x0,x1),x1)",,2500
+2018-05-22 19:33,traces/generated/5to10OneThree/0033.trace,125,125,3,3,10,"->(F(x1),U(!(x0),x1))",209.9510419173,"U(->(x0,x1),x1)",,2500
+2018-05-23 00:38,traces/generated/5to10OneThree/0035.trace,150,150,3,3,10,"->(F(x1),U(!(x0),x1))",244.0311845299,"U(!(x0),x1)",,3000
+2018-05-23 00:38,traces/generated/5to10OneThree/0035.trace,150,150,3,3,10,"->(F(x1),U(!(x0),x1))",244.0311845299,"U(!(x0),x1)",,3000
+2018-05-22 22:49,traces/generated/5to10OneThree/0037.trace,175,175,3,3,10,"->(F(x1),U(!(x0),x1))",295.0637202594,"U(!(x0),x1)",,3500
+2018-05-22 22:49,traces/generated/5to10OneThree/0037.trace,175,175,3,3,10,"->(F(x1),U(!(x0),x1))",295.0637202594,"U(!(x0),x1)",,3500
+2018-05-23 00:49,traces/generated/5to10OneThree/0039.trace,200,200,3,3,10,"->(F(x1),U(!(x0),x1))",356.8050514469,"U(!(x0),x1)",,4000
+2018-05-23 00:49,traces/generated/5to10OneThree/0039.trace,200,200,3,3,10,"->(F(x1),U(!(x0),x1))",356.8050514469,"U(!(x0),x1)",,4000
+2018-05-23 01:05,traces/generated/5to10OneThree/0041.trace,225,225,3,3,10,"->(F(x1),U(!(x0),x1))",395.5378082381,"U(!(x0),x1)",,4500
+2018-05-23 01:05,traces/generated/5to10OneThree/0041.trace,225,225,3,3,10,"->(F(x1),U(!(x0),x1))",395.5378082381,"U(!(x0),x1)",,4500
+2018-05-22 23:20,traces/generated/5to10OneThree/0043.trace,250,250,3,3,10,"->(F(x1),U(!(x0),x1))",439.2928944402,"U(!(x0),x1)",,5000
+2018-05-22 23:20,traces/generated/5to10OneThree/0043.trace,250,250,3,3,10,"->(F(x1),U(!(x0),x1))",439.2928944402,"U(!(x0),x1)",,5000
+2018-05-22 21:23,traces/generated/5to10threethree/0166.trace,150,150,2,3,5,"->(F(x1),U(x0,x1))",246.8896494131,"U(x0,->(F(x1),x1))",,1500
+2018-05-22 20:44,traces/generated/5to10threethree/0168.trace,175,175,2,3,5,"->(F(x1),U(x0,x1))",284.1370065792,"->(F(x1),U(x0,x1))",,1750
+2018-05-22 21:37,traces/generated/5to10threethree/0170.trace,200,200,2,3,5,"->(F(x1),U(x0,x1))",353.6830849079,"U(x0,->(F(x1),x1))",,2000
+2018-05-22 20:49,traces/generated/5to10threethree/0172.trace,225,225,2,3,5,"->(F(x1),U(x0,x1))",438.9435834659,"U(x0,->(F(x1),x1))",,2250
+2018-05-22 19:56,traces/generated/5to10threethree/0174.trace,250,250,2,3,5,"->(F(x1),U(x0,x1))",440.83606087,"->(F(x1),U(x0,x1))",,2500
+2018-05-22 21:01,traces/generated/5to10threethree/0165.trace,125,125,2,3,10,"->(F(x1),U(x0,x1))",68.4503090449,"U(x0,x1)",,2500
+2018-05-22 21:46,traces/generated/5to10threethree/0167.trace,150,150,2,3,10,"->(F(x1),U(x0,x1))",83.0684280919,"U(x0,x1)",,3000
+2018-05-22 21:02,traces/generated/5to10threethree/0169.trace,175,175,2,3,10,"->(F(x1),U(x0,x1))",97.594743459,"U(x0,x1)",,3500
+2018-05-22 21:56,traces/generated/5to10threethree/0171.trace,200,200,2,3,10,"->(F(x1),U(x0,x1))",110.83159149,"U(x0,x1)",,4000
+2018-05-22 20:32,traces/generated/5to10threethree/0175.trace,250,250,2,3,10,"->(F(x1),U(x0,x1))",139.1142325189,"U(x0,x1)",,5000
+2018-05-22 21:11,traces/generated/5to10threethree/0173.trace,225,225,2,3,10,"->(F(x1),U(x0,x1))",/,/,timeout: 600,4500
+2018-05-22 19:36,traces/generated/5to10OneThree/0066.trace,5,5,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",0.3631870337,F(x1),,50
+2018-05-22 19:36,traces/generated/5to10OneThree/0066.trace,5,5,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",0.3631870337,F(x1),,50
+2018-05-22 20:02,traces/generated/5to10OneThree/0070.trace,50,50,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,500
+2018-05-22 21:12,traces/generated/5to10OneThree/0068.trace,25,25,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,250
+2018-05-22 21:36,traces/generated/5to10OneThree/0072.trace,75,75,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,750
+2018-05-22 23:28,traces/generated/5to10OneThree/0078.trace,150,150,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1500
+2018-05-23 00:08,traces/generated/5to10OneThree/0074.trace,100,100,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1000
+2018-05-23 01:33,traces/generated/5to10OneThree/0076.trace,125,125,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1250
+2018-05-22 20:02,traces/generated/5to10OneThree/0070.trace,50,50,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,500
+2018-05-22 21:12,traces/generated/5to10OneThree/0068.trace,25,25,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,250
+2018-05-22 21:36,traces/generated/5to10OneThree/0072.trace,75,75,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,750
+2018-05-22 23:28,traces/generated/5to10OneThree/0078.trace,150,150,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1500
+2018-05-23 00:08,traces/generated/5to10OneThree/0074.trace,100,100,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1000
+2018-05-23 01:33,traces/generated/5to10OneThree/0076.trace,125,125,4,3,5,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1250
+2018-05-22 20:33,traces/generated/5to10OneThree/0069.trace,25,2,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",1.545610508,F(x1),,270
+2018-05-22 20:33,traces/generated/5to10OneThree/0069.trace,25,2,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",1.545610508,F(x1),,270
+2018-05-22 19:30,traces/generated/5to10OneThree/0071.trace,50,8,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",132.6339507247,"U(F(x1),&(F(x1),x0))",,580
+2018-05-22 19:30,traces/generated/5to10OneThree/0071.trace,50,8,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",132.6339507247,"U(F(x1),&(F(x1),x0))",,580
+2018-05-22 20:44,traces/generated/5to10OneThree/0073.trace,75,13,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",229.3521950701,"U(F(x1),&(x0,F(x1)))",,880
+2018-05-22 20:44,traces/generated/5to10OneThree/0073.trace,75,13,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",229.3521950701,"U(F(x1),&(x0,F(x1)))",,880
+2018-05-22 23:04,traces/generated/5to10OneThree/0075.trace,100,22,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",299.0292390622,"U(F(x1),&(F(x1),x0))",,1220
+2018-05-22 23:04,traces/generated/5to10OneThree/0075.trace,100,22,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",299.0292390622,"U(F(x1),&(F(x1),x0))",,1220
+2018-05-23 00:43,traces/generated/5to10OneThree/0077.trace,125,19,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",338.7342662783,"U(F(x1),&(F(x1),x0))",,1440
+2018-05-23 00:43,traces/generated/5to10OneThree/0077.trace,125,19,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",338.7342662783,"U(F(x1),&(F(x1),x0))",,1440
+2018-05-22 22:29,traces/generated/5to10OneThree/0079.trace,150,33,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1830
+2018-05-22 22:29,traces/generated/5to10OneThree/0079.trace,150,33,4,3,10,"|(G(!(x0)),F(&(x0,F(x1))))",/,/,timeout: 600,1830
+2018-05-22 20:22,traces/generated/5to10OneThree/0044.trace,5,5,4,3,5,"G(->(x1,G(!(x0))))",7.9880287419,"U(X(x2),!(x0))",,50
+2018-05-22 20:22,traces/generated/5to10OneThree/0044.trace,5,5,4,3,5,"G(->(x1,G(!(x0))))",7.9880287419,"U(X(x2),!(x0))",,50
+2018-05-22 19:16,traces/generated/5to10OneThree/0046.trace,25,25,4,3,5,"G(->(x1,G(!(x0))))",214.1891408619,"!(F(&(x1,U(x1,x0))))",,250
+2018-05-22 19:16,traces/generated/5to10OneThree/0046.trace,25,25,4,3,5,"G(->(x1,G(!(x0))))",214.1891408619,"!(F(&(x1,U(x1,x0))))",,250
+2018-05-22 19:20,traces/generated/5to10OneThree/0050.trace,75,75,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,750
+2018-05-22 20:33,traces/generated/5to10OneThree/0048.trace,50,50,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,500
+2018-05-22 20:48,traces/generated/5to10OneThree/0052.trace,100,100,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1000
+2018-05-22 21:02,traces/generated/5to10OneThree/0064.trace,250,250,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2500
+2018-05-22 22:39,traces/generated/5to10OneThree/0058.trace,175,175,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1750
+2018-05-22 22:54,traces/generated/5to10OneThree/0054.trace,125,125,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1250
+2018-05-22 23:10,traces/generated/5to10OneThree/0062.trace,225,225,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2250
+2018-05-23 00:55,traces/generated/5to10OneThree/0056.trace,150,150,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1500
+2018-05-23 01:12,traces/generated/5to10OneThree/0060.trace,200,200,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2000
+2018-05-22 19:20,traces/generated/5to10OneThree/0050.trace,75,75,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,750
+2018-05-22 20:33,traces/generated/5to10OneThree/0048.trace,50,50,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,500
+2018-05-22 20:48,traces/generated/5to10OneThree/0052.trace,100,100,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1000
+2018-05-22 21:02,traces/generated/5to10OneThree/0064.trace,250,250,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2500
+2018-05-22 22:39,traces/generated/5to10OneThree/0058.trace,175,175,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1750
+2018-05-22 22:54,traces/generated/5to10OneThree/0054.trace,125,125,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1250
+2018-05-22 23:10,traces/generated/5to10OneThree/0062.trace,225,225,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2250
+2018-05-23 00:55,traces/generated/5to10OneThree/0056.trace,150,150,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1500
+2018-05-23 01:12,traces/generated/5to10OneThree/0060.trace,200,200,4,3,5,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2000
+2018-05-22 21:01,traces/generated/5to10OneThree/0045.trace,2,5,4,3,10,"G(->(x1,G(!(x0))))",14.602051971,"&(x0,!(X(x1)))",,70
+2018-05-22 21:01,traces/generated/5to10OneThree/0045.trace,2,5,4,3,10,"G(->(x1,G(!(x0))))",14.602051971,"&(x0,!(X(x1)))",,70
+2018-05-22 19:45,traces/generated/5to10OneThree/0047.trace,9,25,4,3,10,"G(->(x1,G(!(x0))))",277.9028978618,"!(U(F(X(x0)),x1))",,340
+2018-05-22 19:45,traces/generated/5to10OneThree/0047.trace,9,25,4,3,10,"G(->(x1,G(!(x0))))",277.9028978618,"!(U(F(X(x0)),x1))",,340
+2018-05-22 19:52,traces/generated/5to10OneThree/0051.trace,10,75,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,850
+2018-05-22 20:23,traces/generated/5to10OneThree/0065.trace,46,250,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2960
+2018-05-22 21:22,traces/generated/5to10OneThree/0049.trace,12,50,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,620
+2018-05-22 21:46,traces/generated/5to10OneThree/0053.trace,16,100,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1160
+2018-05-22 22:08,traces/generated/5to10OneThree/0063.trace,56,225,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2810
+2018-05-22 23:38,traces/generated/5to10OneThree/0059.trace,39,175,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2140
+2018-05-22 23:58,traces/generated/5to10OneThree/0055.trace,23,125,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1480
+2018-05-23 00:28,traces/generated/5to10OneThree/0061.trace,42,200,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2420
+2018-05-23 01:54,traces/generated/5to10OneThree/0057.trace,23,150,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1730
+2018-05-22 19:52,traces/generated/5to10OneThree/0051.trace,10,75,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,850
+2018-05-22 20:23,traces/generated/5to10OneThree/0065.trace,46,250,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2960
+2018-05-22 21:22,traces/generated/5to10OneThree/0049.trace,12,50,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,620
+2018-05-22 21:46,traces/generated/5to10OneThree/0053.trace,16,100,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1160
+2018-05-22 22:08,traces/generated/5to10OneThree/0063.trace,56,225,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2810
+2018-05-22 23:38,traces/generated/5to10OneThree/0059.trace,39,175,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2140
+2018-05-22 23:58,traces/generated/5to10OneThree/0055.trace,23,125,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1480
+2018-05-23 00:28,traces/generated/5to10OneThree/0061.trace,42,200,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,2420
+2018-05-23 01:54,traces/generated/5to10OneThree/0057.trace,23,150,4,3,10,"G(->(x1,G(!(x0))))",/,/,timeout: 600,1730
+2018-05-22 19:32,traces/generated/5to10threethree/0176.trace,5,5,3,3,5,"G(->(x1,G(x0)))",1.197161217,"&(X(x0),x0)",,50
+2018-05-22 19:51,traces/generated/5to10threethree/0178.trace,25,25,3,3,5,"G(->(x1,G(x0)))",40.235374667,"G(->(x1,G(x0)))",,250
+2018-05-22 21:58,traces/generated/5to10threethree/0180.trace,50,50,3,3,5,"G(->(x1,G(x0)))",70.797323189,"G(->(x1,G(x0)))",,500
+2018-05-22 21:21,traces/generated/5to10threethree/0182.trace,75,75,3,3,5,"G(->(x1,G(x0)))",109.256657033,"G(->(x1,G(x0)))",,750
+2018-05-22 20:21,traces/generated/5to10threethree/0184.trace,100,100,3,3,5,"G(->(x1,G(x0)))",180.1059616469,"G(->(x1,G(x0)))",,1000
+2018-05-22 19:32,traces/generated/5to10threethree/0190.trace,175,175,3,3,5,"G(->(x1,G(x0)))",251.318998314,"G(->(x1,G(x0)))",,1750
+2018-05-22 19:36,traces/generated/5to10threethree/0186.trace,125,125,3,3,5,"G(->(x1,G(x0)))",281.078060963,"G(->(x1,G(x0)))",,1250
+2018-05-22 20:25,traces/generated/5to10threethree/0188.trace,150,150,3,3,5,"G(->(x1,G(x0)))",365.937690268,"G(->(x1,G(x0)))",,1500
+2018-05-22 20:14,traces/generated/5to10threethree/0192.trace,200,200,3,3,5,"G(->(x1,G(x0)))",437.0607983351,"G(->(x1,G(x0)))",,2000
+2018-05-22 21:03,traces/generated/5to10threethree/0194.trace,225,225,3,3,5,"G(->(x1,G(x0)))",476.792682983,"G(->(x1,G(x0)))",,2250
+2018-05-22 21:47,traces/generated/5to10threethree/0196.trace,250,250,3,3,5,"G(->(x1,G(x0)))",530.74188208,"G(->(x1,G(x0)))",,2500
+2018-05-22 19:41,traces/generated/5to10threethree/0177.trace,3,5,3,3,10,"G(->(x1,G(x0)))",6.8270347151,"!(U(x0,x1))",,80
+2018-05-22 20:24,traces/generated/5to10threethree/0179.trace,6,25,3,3,10,"G(->(x1,G(x0)))",88.087967444,"G(->(x1,G(x0)))",,310
+2018-05-22 21:43,traces/generated/5to10threethree/0181.trace,13,50,3,3,10,"G(->(x1,G(x0)))",173.5985244701,"G(->(x1,G(x0)))",,630
+2018-05-22 19:52,traces/generated/5to10threethree/0185.trace,20,100,3,3,10,"G(->(x1,G(x0)))",257.423457985,"G(->(x1,G(x0)))",,1200
+2018-05-22 20:56,traces/generated/5to10threethree/0183.trace,19,75,3,3,10,"G(->(x1,G(x0)))",267.343608524,"G(->(x1,G(x0)))",,940
+2018-05-22 19:27,traces/generated/5to10threethree/0187.trace,20,125,3,3,10,"G(->(x1,G(x0)))",341.52293977,"G(->(x1,G(x0)))",,1450
+2018-05-22 19:17,traces/generated/5to10threethree/0191.trace,37,175,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600,2120
+2018-05-22 19:41,traces/generated/5to10threethree/0193.trace,39,200,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600,2390
+2018-05-22 20:04,traces/generated/5to10threethree/0189.trace,24,150,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600,1740
+2018-05-22 20:34,traces/generated/5to10threethree/0195.trace,44,225,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600,2690
+2018-05-22 21:27,traces/generated/5to10threethree/0197.trace,51,250,3,3,10,"G(->(x1,G(x0)))",/,/,timeout: 600,3010
+2018-05-22 22:08,traces/generated/5to10OneThree/0000.trace,5,5,2,2,5,G(!(x0)),0.925661935,G(!(x0)),,50
+2018-05-22 22:08,traces/generated/5to10OneThree/0000.trace,5,5,2,2,5,G(!(x0)),0.925661935,G(!(x0)),,50
+2018-05-23 00:18,traces/generated/5to10OneThree/0002.trace,25,25,2,2,5,G(!(x0)),4.7238504849,!(F(x0)),,250
+2018-05-23 00:18,traces/generated/5to10OneThree/0002.trace,25,25,2,2,5,G(!(x0)),4.7238504849,!(F(x0)),,250
+2018-05-22 19:20,traces/generated/5to10OneThree/0004.trace,50,50,2,2,5,G(!(x0)),9.0494160331,G(!(x0)),,500
+2018-05-22 19:20,traces/generated/5to10OneThree/0004.trace,50,50,2,2,5,G(!(x0)),9.0494160331,G(!(x0)),,500
+2018-05-22 20:33,traces/generated/5to10OneThree/0006.trace,75,75,2,2,5,G(!(x0)),13.8821721799,G(!(x0)),,750
+2018-05-22 20:33,traces/generated/5to10OneThree/0006.trace,75,75,2,2,5,G(!(x0)),13.8821721799,G(!(x0)),,750
+2018-05-22 19:13,traces/generated/5to10OneThree/0008.trace,100,100,2,2,5,G(!(x0)),18.0672369353,G(!(x0)),,1000
+2018-05-22 19:13,traces/generated/5to10OneThree/0008.trace,100,100,2,2,5,G(!(x0)),18.0672369353,G(!(x0)),,1000
+2018-05-22 21:01,traces/generated/5to10OneThree/0010.trace,125,125,2,2,5,G(!(x0)),23.0177213503,G(!(x0)),,1250
+2018-05-22 21:01,traces/generated/5to10OneThree/0010.trace,125,125,2,2,5,G(!(x0)),23.0177213503,G(!(x0)),,1250
+2018-05-22 19:32,traces/generated/5to10OneThree/0012.trace,150,150,2,2,5,G(!(x0)),27.588451928,!(F(x0)),,1500
+2018-05-22 19:32,traces/generated/5to10OneThree/0012.trace,150,150,2,2,5,G(!(x0)),27.588451928,!(F(x0)),,1500
+2018-05-23 00:42,traces/generated/5to10OneThree/0014.trace,175,175,2,2,5,G(!(x0)),32.0109117199,!(F(x0)),,1750
+2018-05-23 00:42,traces/generated/5to10OneThree/0014.trace,175,175,2,2,5,G(!(x0)),32.0109117199,!(F(x0)),,1750
+2018-05-22 22:28,traces/generated/5to10OneThree/0016.trace,200,200,2,2,5,G(!(x0)),37.4091498042,!(F(x0)),,2000
+2018-05-22 22:28,traces/generated/5to10OneThree/0016.trace,200,200,2,2,5,G(!(x0)),37.4091498042,!(F(x0)),,2000
+2018-05-23 00:49,traces/generated/5to10OneThree/0018.trace,225,225,2,2,5,G(!(x0)),41.743544363,G(!(x0)),,2250
+2018-05-23 00:49,traces/generated/5to10OneThree/0018.trace,225,225,2,2,5,G(!(x0)),41.743544363,G(!(x0)),,2250
+2018-05-22 23:09,traces/generated/5to10OneThree/0020.trace,250,250,2,2,5,G(!(x0)),45.7041705479,G(!(x0)),,2500
+2018-05-22 23:09,traces/generated/5to10OneThree/0020.trace,250,250,2,2,5,G(!(x0)),45.7041705479,G(!(x0)),,2500
+2018-05-23 01:05,traces/generated/5to10OneThree/0003.trace,1,25,2,2,10,G(!(x0)),7.0673621763,!(F(x0)),,260
+2018-05-23 01:05,traces/generated/5to10OneThree/0003.trace,1,25,2,2,10,G(!(x0)),7.0673621763,!(F(x0)),,260
+2018-05-22 19:51,traces/generated/5to10OneThree/0005.trace,2,50,2,2,10,G(!(x0)),13.529120978,G(!(x0)),,520
+2018-05-22 19:51,traces/generated/5to10OneThree/0005.trace,2,50,2,2,10,G(!(x0)),13.529120978,G(!(x0)),,520
+2018-05-22 21:12,traces/generated/5to10OneThree/0007.trace,7,75,2,2,10,G(!(x0)),21.3014817592,G(!(x0)),,820
+2018-05-22 21:12,traces/generated/5to10OneThree/0007.trace,7,75,2,2,10,G(!(x0)),21.3014817592,G(!(x0)),,820
+2018-05-22 19:36,traces/generated/5to10OneThree/0009.trace,5,100,2,2,10,G(!(x0)),27.5945441229,G(!(x0)),,1050
+2018-05-22 19:36,traces/generated/5to10OneThree/0009.trace,5,100,2,2,10,G(!(x0)),27.5945441229,G(!(x0)),,1050
+2018-05-22 22:06,traces/generated/5to10OneThree/0011.trace,8,125,2,2,10,G(!(x0)),34.6853977442,G(!(x0)),,1330
+2018-05-22 22:06,traces/generated/5to10OneThree/0011.trace,8,125,2,2,10,G(!(x0)),34.6853977442,G(!(x0)),,1330
+2018-05-22 20:12,traces/generated/5to10OneThree/0013.trace,4,150,2,2,10,G(!(x0)),40.1859620116,G(!(x0)),,1540
+2018-05-22 20:12,traces/generated/5to10OneThree/0013.trace,4,150,2,2,10,G(!(x0)),40.1859620116,G(!(x0)),,1540
+2018-05-23 01:32,traces/generated/5to10OneThree/0015.trace,10,175,2,2,10,G(!(x0)),48.156563588,G(!(x0)),,1850
+2018-05-23 01:32,traces/generated/5to10OneThree/0015.trace,10,175,2,2,10,G(!(x0)),48.156563588,G(!(x0)),,1850
+2018-05-22 23:27,traces/generated/5to10OneThree/0017.trace,8,200,2,2,10,G(!(x0)),54.744028151,G(!(x0)),,2080
+2018-05-22 23:27,traces/generated/5to10OneThree/0017.trace,8,200,2,2,10,G(!(x0)),54.744028151,G(!(x0)),,2080
+2018-05-23 01:43,traces/generated/5to10OneThree/0019.trace,14,225,2,2,10,G(!(x0)),62.9709841353,!(F(x0)),,2390
+2018-05-23 01:43,traces/generated/5to10OneThree/0019.trace,14,225,2,2,10,G(!(x0)),62.9709841353,!(F(x0)),,2390
+2018-05-22 22:07,traces/generated/5to10OneThree/0021.trace,14,250,2,2,10,G(!(x0)),69.3192364271,G(!(x0)),,2640
+2018-05-22 22:07,traces/generated/5to10OneThree/0021.trace,14,250,2,2,10,G(!(x0)),69.3192364271,G(!(x0)),,2640
+time of writing,name of the test file,number of accepting traces,number or rejecting traces,depth of formula,number of variables,max length of traces,specified formula,solving time sat,obtained formula sat,comment sat,
