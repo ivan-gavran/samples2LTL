@@ -24,7 +24,7 @@ from formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy
 
 
 
-def run_solver(q, finalDepth, traces, startValue=3, step=3):
+def run_solver(q, finalDepth, traces, startValue=1, step=1):
 #def run_solver(finalDepth, traces):
     try:
         encoder = config.encoder
@@ -94,7 +94,7 @@ def run_dt_solver(q, testFileName, subsetSize, txtFile, strategy, decreaseRate, 
 
 def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout, testName,\
              dtDecreaseRate, dtStrategy, dtRestarts, dtRepetitions, runSatMethod,runDecisionTreeMethod = True,\
-             iterationStartValue=3, iterationStep=3):
+             iterationStartValue=1, iterationStep=1):
     
     if not os.path.isfile(outputFile):
         headers = ["time of writing", "name of the test file", "number of accepting traces", "number or rejecting traces", "depth of formula", "number of variables",\
@@ -124,7 +124,7 @@ def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout
             
             #this is due to different definition of depth in the naive, binary three encoding. now "depth" is overall number of formulas, while before it was the depth of the tree
             finalDepth = 2**traces.depthOfSolution + traces.numVariables
-            print(finalDepth)
+            
             assert(finalDepth != None)
             resultData = [datetime.now().strftime("%Y-%m-%d %H:%M"), testFileName, len(traces.acceptedTraces), len(traces.rejectedTraces), traces.depthOfSolution,\
                           traces.numVariables, traces.maxLengthOfTraces, str(traces.possibleSolution)]
@@ -141,6 +141,7 @@ def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout
                 while p.exitcode == None:
                     print("going to sleep")
                     time.sleep(1)
+                pdb.set_trace()
                 if p.exitcode == 0:
                     [formula, timePassed] = q.get()
                     if not traces.isFormulaConsistent(formula):
@@ -200,8 +201,8 @@ if __name__ == "__main__":
     parser.add_argument("--dt_repetitions_inside_sampling", dest="dtRepetitionsInsideSampling", default=3)
     parser.add_argument("--dt_strategy", dest="dtStrategy", default=2)
     parser.add_argument("--encoder", dest="encoder", default='dag')
-    parser.add_argument("--iteration_start_value", dest="iterationStartValue", default=3, type=int)
-    parser.add_argument("--iteration_step", dest="iterationStep", default=3, type=int)
+    parser.add_argument("--iteration_start_value", dest="iterationStartValue", default=1, type=int)
+    parser.add_argument("--iteration_step", dest="iterationStep", default=1, type=int)
     
     args,unknown = parser.parse_known_args()
     timeout = int(args.timeout)

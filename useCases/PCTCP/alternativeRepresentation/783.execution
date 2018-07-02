@@ -1,0 +1,7 @@
+{id=1, predecessors=[], node=0, state=expect, stateArg = 0}
+{id=2, predecessors=[], node=0, state=expect, stateArg = 1}
+{id=3, predecessors=[], node=2, state=crash}
+{id=4, predecessors=[1, 2], node=0, state=ready, stateArg=1}
+{id=5, predecessors=[1, 4], node=1, state=ready, stateArg=1}
+{id=8, predecessors=[3], node=2, state=expect, stateArg = 2}
+{id=9, predecessors=[4,5,8], node=2, state=ready, stateArg=1}

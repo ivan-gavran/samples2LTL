@@ -1,0 +1,10 @@
+#Automatically generated configuration for node 2
+#Mon Apr 16 14:22:12 CEST 2018
+server.1=localhost\:2001\:3001
+server.0=localhost\:2000\:3000
+clientPort=4002
+dataDir=/local/fniksic/hitmc/HitMC/pctcp-d1/104/nodes/2/data
+syncLimit=5
+server.2=localhost\:2002\:3002
+initLimit=10
+tickTime=2000

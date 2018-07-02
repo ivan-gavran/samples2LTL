@@ -1,0 +1,16 @@
+MessageEvent{id=1, predecessors=[], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=4, predecessors=[1], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=5, predecessors=[4], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=3, predecessors=[], from=0, to=0, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=6, predecessors=[3], from=0, to=1, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=7, predecessors=[6], from=0, to=2, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=8, predecessors=[1, 7], from=0, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=9, predecessors=[8, 1], from=0, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=10, predecessors=[1, 9], from=0, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+NodeCrashEvent{id=28, nodeId=1}
+Node 0 state: FOLLOWING
+Node 0 final vote: Vote{leader=1, zxid=0, electionEpoch=-1, peerEpoch=0}
+NodeStartEvent{id=11, nodeId=1}
+MessageEvent{id=12, predecessors=[11], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+
+

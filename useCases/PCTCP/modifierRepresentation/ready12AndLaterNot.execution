@@ -1,0 +1,12 @@
+{id=1, predecessors=[], node=1, state=expect, stateArg = 1}
+{id=2, predecessors=[], node=0, state=expect, stateArg = 0}
+{id=3, predecessors=[], node=2, state=expect, stateArg = 2}
+{id=4, predecessors=[1, 3], node=1, state=ready, stateArg=2}
+{id=5, predecessors=[4], node=1, state=crash}
+{id=6, predecessors=[1], node=1, state=expect, stateArg = 1}
+{id=7, predecessors=[2,6], node=0, state=ready, stateArg = 1}
+{id=8, predecessors=[6,7], node=1, state=ready, stateArg=1}
+{id=9, predecessors=[3,7,8], node=2, state=ready, stateArg=1}
+{id=10, predecessors=[7], node=0, state=end}
+{id=11, predecessors=[8], node=1, state=end}
+{id=12, predecessors=[9], node=2, state=end}

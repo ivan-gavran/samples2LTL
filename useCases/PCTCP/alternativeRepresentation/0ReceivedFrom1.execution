@@ -1,0 +1,7 @@
+{id=1, predecessors=[], node=1, sender=2, stateArg = 2}
+{id=2, predecessors=[1], node=2, sender=1, stateArg = 2}
+{id=3, predecessors=[2], node=0, sender=1, stateArg=2}
+{id=4, predecessors=[3], node=1, sender=0, stateArg=2}
+{id=5, predecessors=[4], node=0, sender= 0, stateArg=-1}
+{id=6, predecessors=[3], node=1, sender=1, stateArg=-1}
+{id=7, predecessors=[2], node=2, sender= 2, stateArg=-1}

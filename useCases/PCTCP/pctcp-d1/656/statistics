@@ -1,0 +1,12 @@
+PCTCPStatistics{
+  randomSeed = 8751696763553241566
+, maxEvents = 40
+, numPriorityChangePoints = 0
+, totalEvents = 23
+, averageChains = 6.653846153846154
+, maxChains = 8
+, averageEnabledEvents = 3.8076923076923075
+, maxEnabledEvents = 6
+, totalTime = 2449 ms
+, result = SUCCESS
+}

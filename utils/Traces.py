@@ -211,7 +211,7 @@ class ExperimentTraces:
                         self.depthOfSolution = int(line)
                     elif readingMode == 4:
                         possibleSolution = line.strip()
-                        if possibleSolution == "none":
+                        if possibleSolution.lower() == "none":
                             self.possibleSolution = None
                         else:
                             self.possibleSolution = Formula.convertTextToFormula(possibleSolution)
