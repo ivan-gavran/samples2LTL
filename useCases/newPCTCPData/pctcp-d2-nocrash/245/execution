@@ -1,0 +1,48 @@
+MessageEvent{id=2, predecessors=[], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=4, predecessors=[2], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=5, predecessors=[4], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=6, predecessors=[4, 5], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=7, predecessors=[4, 6], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=8, predecessors=[4, 7], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=9, predecessors=[8, 7], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=10, predecessors=[9, 7], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=11, predecessors=[10, 7], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=1, predecessors=[], from=0, to=0, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=12, predecessors=[1], from=0, to=1, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=13, predecessors=[12], from=0, to=2, leader=0, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=14, predecessors=[13, 2], from=0, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=15, predecessors=[2, 14], from=0, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=16, predecessors=[2, 15], from=0, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=3, predecessors=[], from=2, to=0, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=18, predecessors=[16, 3], from=0, to=0, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=19, predecessors=[18, 3], from=0, to=1, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=21, predecessors=[19, 11], from=1, to=0, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=22, predecessors=[21, 19], from=1, to=1, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=23, predecessors=[22, 19], from=1, to=2, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+Node 1 state: FOLLOWING
+Node 1 final vote: Vote{leader=2, zxid=0, electionEpoch=-1, peerEpoch=0}
+MessageEvent{id=20, predecessors=[3, 19], from=0, to=2, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+Node 0 state: FOLLOWING
+Node 0 final vote: Vote{leader=2, zxid=0, electionEpoch=-1, peerEpoch=0}
+MessageEvent{id=24, predecessors=[22, 23], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=26, predecessors=[24], from=0, to=1, leader=2, state=FOLLOWING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=25, predecessors=[24, 22], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=28, predecessors=[25, 22], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=27, predecessors=[20, 21], from=0, to=0, leader=0, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=29, predecessors=[21, 27], from=0, to=1, leader=0, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=31, predecessors=[28, 29], from=1, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=32, predecessors=[29, 31], from=1, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=33, predecessors=[32, 29], from=1, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=30, predecessors=[21, 29], from=0, to=2, leader=0, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=34, predecessors=[30, 31], from=0, to=0, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=35, predecessors=[34, 31], from=0, to=1, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+Node 1 state: LEADING
+Node 1 final vote: Vote{leader=1, zxid=0, electionEpoch=-1, peerEpoch=0}
+MessageEvent{id=36, predecessors=[35, 31], from=0, to=2, leader=1, state=LOOKING, zxid=0, electionEpoch=2, peerEpoch=0}
+MessageEvent{id=17, predecessors=[3], from=2, to=1, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=38, predecessors=[17], from=2, to=2, leader=2, state=LOOKING, zxid=0, electionEpoch=1, peerEpoch=0}
+MessageEvent{id=37, predecessors=[17], from=1, to=2, leader=1, state=LEADING, zxid=0, electionEpoch=2, peerEpoch=0}
+Node 0 state: FOLLOWING
+Node 0 final vote: Vote{leader=1, zxid=0, electionEpoch=-1, peerEpoch=0}
+Node 2 state: LEADING
+Node 2 final vote: Vote{leader=2, zxid=0, electionEpoch=-1, peerEpoch=0}

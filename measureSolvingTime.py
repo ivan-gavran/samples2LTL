@@ -95,7 +95,6 @@ def run_dt_solver(q, testFileName, subsetSize, txtFile, strategy, decreaseRate, 
 def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout, testName,\
              dtDecreaseRate, dtStrategy, dtRestarts, dtRepetitions, runSatMethod,runDecisionTreeMethod = True,\
              iterationStartValue=1, iterationStep=1):
-    
     if not os.path.isfile(outputFile):
         headers = ["time of writing", "name of the test file", "number of accepting traces", "number or rejecting traces", "depth of formula", "number of variables",\
                                   "max length of traces", "specified formula"]
@@ -141,7 +140,6 @@ def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout
                 while p.exitcode == None:
                     print("going to sleep")
                     time.sleep(1)
-                pdb.set_trace()
                 if p.exitcode == 0:
                     [formula, timePassed] = q.get()
                     if not traces.isFormulaConsistent(formula):

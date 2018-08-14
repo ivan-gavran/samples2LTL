@@ -1,7 +1,9 @@
 from useCases.DependencyGraph import DependencyGraph
+from useCases.DependencyGraph2 import DependencyGraph2
 from useCases.StateOfNodesDependencyGraph import StateOfNodesDependencyGraph
 from useCases.AlternativeReceives import AlternativeReceives
 from useCases.ReceivesDependencyGraph import ReceivesDependencyGraph
+from useCases.ModifiedReceivesDependencyGraph import ModifiedReceivesDependencyGraph
 import argparse
 import pdb
 from utils.Traces import ExperimentTraces, Trace
@@ -23,25 +25,23 @@ The way to run:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--property_file_faulty", dest="propertyFileFaulty", nargs='+', default=["useCases/PCTCP/pctcp-d1/736/execution",\
-                                                                                      #"useCases/PCTCP/pctcp-d1/130/execution",\
-                                                                                      #"useCases/PCTCP/pctcp-d1/644/execution",\
-                                                                                      #"useCases/PCTCP/pctcp-d1/314/execution",\
-                                                                                      #"useCases/PCTCP/pctcp-d1/922/execution",\
-                                                                                      #"useCases/PCTCP/pctcp-d1/457/execution",\
+    parser.add_argument("--property_file_faulty", dest="propertyFileFaulty", nargs='+', default=[\
+                                                                                                 "useCases/newPCTCPData/experiments/pctcp-d2-nocrash-modified/135/execution",\
+                                                                                                 
+                                                                                    
                                                                                       ])
-    parser.add_argument("--property_file_correct", dest="propertyFileCorrect", nargs='+', default=["useCases/PCTCP/pctcp-d1/735/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/131/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/654/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/313/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/921/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/455/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/26/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/110/execution",\
-                                                                                      "useCases/PCTCP/pctcp-d1/808/execution"
+    parser.add_argument("--property_file_correct", dest="propertyFileCorrect", nargs='+', default=[\
+                                                                                                   #"useCases/newPCTCPData/experiments/pctcp-d2-nocrash/136/execution",\
+                                                                                                   #"useCases/newPCTCPData/experiments/pctcp-d2-nocrash/816/execution",\
+                                                                                                  # "useCases/newPCTCPData/experiments/pctcp-d2-nocrash/456/execution",\
+                                                                                                  # "useCases/newPCTCPData/experiments/pctcp-d2-nocrash/208/execution",\
+                                                                                                  # "useCases/newPCTCPData/experiments/pctcp-d2-nocrash/1/execution",\
+                                                                                                   "useCases/newPCTCPData/experiments/pctcp-d2-nocrash-modified/2/execution",\
+                                                                                                   #"useCases/newPCTCPData/experiments/pctcp-d2-nocrash/3/execution",\
+                                                                                                   #"useCases/newPCTCPData/experiments/pctcp-d2-nocrash/4/execution",\
                                                                                       ])
-    parser.add_argument("--traces_out", dest="tracesFileName", default="traces/useCases/ptcp-d1/generated.trace")
-    parser.add_argument("--num_linearization", dest="numTracesLinearizations", type=int, default=20)
+    parser.add_argument("--traces_out", dest="tracesFileName", default="traces/useCases/ptcp-d2-nocrash/generated.trace")
+    parser.add_argument("--num_linearization", dest="numTracesLinearizations", type=int, default=5)
     
     
     args,unknown = parser.parse_known_args()
@@ -54,8 +54,11 @@ if __name__ == "__main__":
     #depGraph = StateOfNodesDependencyGraph
     #depGraph = DependencyGraph
     #depGraph = ReceivesDependencyGraph
-    depGraph = AlternativeReceives
+    #depGraph = AlternativeReceives
+    depGraph = DependencyGraph2
+    depGraph = ModifiedReceivesDependencyGraph
     for fileName in faultyExecutions:
+        print(fileName)
         dgF = depGraph()
         dgF.readGraphFromPropertyFile(fileName)
         newTraces = dgF.generateTraces(maxNumberOfSolutions = args.numTracesLinearizations)

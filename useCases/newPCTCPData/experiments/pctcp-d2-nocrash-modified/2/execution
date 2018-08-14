@@ -1,0 +1,17 @@
+MessageReceived{id=12, predecessors=[], from=1, to=1, vote=1}
+MessageReceived{id=15, predecessors=[], from=2, to=2, vote=2}
+MessageReceived{id=13, predecessors=[], from=0, to=0, vote=0}
+MessageReceived{id=14, predecessors=[], from=1, to=2, vote=1}
+MessageReceived{id=1, predecessors=[], from=2, to=1, vote=2}
+MessageReceived{id=8, predecessors=[], from=2, to=0, vote=2}
+MessageReceived{id=9, predecessors=[], from=2, to=2, vote=2}
+MessageReceived{id=2, predecessors=[1], from=1, to=2, vote=2}
+MessageReceived{id=10, predecessors=[], from=1, to=0, vote=2}
+MessageReceived{id=8, predecessors=[], from=1, to=1, vote=2}
+Decision{id=3, predecessors=[2], nodeId=2, state=LEADING, vote=2}
+Decision{id=4, predecessors=[1], nodeId=1, state=FOLLOWING, vote=2}
+MessageReceived{id=5, predecessors=[3], from=0, to=2, vote=0}
+MessageReceived{id=6, predecessors=[5], from=2, to=0, vote=2}
+MessageReceived{id=7, predecessors=[6], from=0, to=2, vote=2}
+MessageReceived{id=8, predecessors=[6,7], from=0, to=1, vote=2}
+Decision{id=11, predecessors=[5], nodeId=0, state=FOLLOWING, vote=2}
