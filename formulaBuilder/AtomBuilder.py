@@ -45,6 +45,12 @@ class AtomBuilder:
                     setToFill.append(trace)
         self.separationDict = {(p, n): False for p in self.positiveExamples for n in self.negativeExamples} 
         self.totalNumberOfExamples = len(self.positiveExamples) + len(self.negativeExamples)
+        
+    def getExamplesFromTraces(self, traces):
+        self.positiveExamples = traces.acceptedTraces
+        self.negativeExamples = traces.rejectedTraces
+        self.separationDict = {(p, n): False for p in self.positiveExamples for n in self.negativeExamples} 
+        self.totalNumberOfExamples = len(self.positiveExamples) + len(self.negativeExamples)
     
     def getLabels(self):
         return [True for _ in self.positiveExamples]+[False for _ in self.negativeExamples]    

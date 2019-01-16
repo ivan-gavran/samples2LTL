@@ -20,75 +20,11 @@ from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
 from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 import logging
 from formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy
+from solverRuns import run_solver, run_dt_solver
 
 
 
 
-def run_solver(q, finalDepth, traces, startValue=1, step=1):
-#def run_solver(finalDepth, traces):
-    try:
-        encoder = config.encoder
-        t = TicToc()
-        t.tic()
-        foundSat = False
-        for i in range(startValue,finalDepth+1, step):
-            fg = encoder(i, traces)
-            fg.encodeFormula()
-            
-            if fg.solver.check() == sat:
-                foundSat = True
-                print("depth %d: sat"%i)
-                timePassed = t.tocvalue()
-                m = fg.solver.model()
-                
-                #pdb.set_trace()
-                formula = fg.reconstructWholeFormula(m)
-                print(formula)
-                q.put([formula, timePassed])
-                #return [formula, timePassed]
-                
-                break
-            elif fg.solver.check() == unsat:
-                print("depth %d: unsat"% i)
-                
-                
-            else:
-                assert(False)
-        if foundSat == False:
-            timePassed = t.tocvalue()
-            print("unsat even after reaching max depth")
-            q.put([Formula("empty"), timePassed])
-    except:
-        sys.exit(1)
-        #return [Formula("empty"), timePassed]
-        
-#def run_dt_solver(q, testFileName):
-def run_dt_solver(q, testFileName, subsetSize, txtFile, strategy, decreaseRate, repetitionsInsideSampling, restartsOfSampling):
-#def run_dt_solver(testFileName, subsetSize, txtFile, strategy, decreaseRate, repetitionsInsideSampling, restartsOfSampling):
-    try:
-        ab = AtomBuilder()
-        ab.readExamples(testFileName)
-        #samplingStrategy = config.DT_SAMPLING_STRATEGY
-        samplingStrategy = strategy
-        #decreaseRate = config.DT_DECREASE_RATE
-        decreaseRate = decreaseRate
-        t = TicToc()
-        t.tic()
-        (atoms, atomTraceEvaluation) = ab.buildAtoms(sizeOfPSubset=subsetSize, strategy = samplingStrategy, sizeOfNSubset=subsetSize, probabilityDecreaseRate=decreaseRate,\
-                      numRepetitionsInsideSampling=repetitionsInsideSampling, numRestartsOfSampling = restartsOfSampling)
-        timePassed = t.tocvalue()
-        atomsFile = "atoms.txt"
-        treeTxtFile = txtFile
-        ab.writeAtomsIntoFile(atomsFile)
-        
-        fb = DTFormulaBuilder(features = ab.atoms, data = ab.getMatrixRepresentation(), labels = ab.getLabels())
-        fb.createASeparatingFormula()
-        numberOfUsedPrimitives = fb.numberOfNodes()
-        fb.tree_to_text_file(treeTxtFile)
-    #    return (timePassed, len(atoms), numberOfUsedPrimitives)
-        q.put([timePassed, len(atoms), numberOfUsedPrimitives])
-    except:
-        sys.exit(1)
     
 
 
@@ -130,7 +66,7 @@ def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout
             if runSatMethod == True:
                 formula = None
                 timePassed = 0
-                p = Process(target = run_solver, args = (q, finalDepth, traces, iterationStartValue, iterationStep))
+                p = Process(target = run_solver, args = (finalDepth, traces, iterationStartValue, iterationStep, q))
                 p.start()
                  
                 p.join(timeout=solvingTimeout)
@@ -157,7 +93,9 @@ def test_run(encoder, outputFile, outputFolder, testTracesFolder, solvingTimeout
                 
                 subsetSize = config.DT_SUBSET_SIZE
                 treeRepresentationFile = outputFolder+os.path.basename(testFileName).split('.')[0]+"_tree.txt"
-                p = Process(target = run_dt_solver, args = (qDT, testFileName, subsetSize, treeRepresentationFile, dtStrategy, dtDecreaseRate, dtRepetitions, dtRestarts))
+                print(treeRepresentationFile)
+                p = Process(target = run_dt_solver, args = (traces, subsetSize, treeRepresentationFile, dtStrategy, dtDecreaseRate,\
+                                                            dtRepetitions, dtRestarts, qDT))
                 #run_dt_solver(testFileName, subsetSize, treeRepresentationFile, dtStrategy, dtDecreaseRate, dtRepetitions, dtRestarts)
                 p.start()
                 

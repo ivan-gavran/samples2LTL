@@ -53,7 +53,10 @@ class DTFormulaBuilder:
             str(self.features[i]) if i != _tree.TREE_UNDEFINED else "*"
             for i in tree_.feature
         ]
-        os.makedirs(os.path.dirname(outputFile), exist_ok=True)
+        try:
+            os.makedirs(os.path.dirname(outputFile), exist_ok=True)
+        except:
+            pass
         with open(outputFile, "w") as out:
             while treeQueue:
                 (node, depth) = treeQueue.pop()

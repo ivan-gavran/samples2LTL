@@ -9,7 +9,8 @@ There are two methods in this repository - one that encodes the problem as a sat
 - install Z3 with python bindings ([link](https://github.com/Z3Prover/z3#python))
 
 ## Running
-- to test on set of files, one can run `python measureSolvingTime.py` with `--test_dt_method` or `--test_sat_method`
+- to test on a single example (set of positive and negative traces), runt `python experiment.py` with `--test_dt_method` or `--test_sat_method` (or both) and with the path to the file with the example provided as an argument `--traces` 
+- to test on set of examples, one can run `python measureSolvingTime.py` with `--test_dt_method` or `--test_sat_method` and with the path to the folder containing the examples provided as an argument `--test_traces_folder`
 - running `python measureSolvingTime.py --test_dt_method --test_sat_method` with no additional parameters takes the traces from `traces/generatedTest` and produces results in `experiments/test/`
 - additionally, to make sure everything runs as it should one can run `pytest`
 
