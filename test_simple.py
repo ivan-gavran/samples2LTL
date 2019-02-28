@@ -38,12 +38,12 @@ def run(encoder):
             finalDepth = maxDepth
         else:
             finalDepth = traces.depthOfSolution
-        
-        
-        for i in range(1,finalDepth+1):
-            fg = encoder(i, traces)
-            fg.encodeFormula()
-            with open('log/solver.txt', 'w+') as debugFile:
+
+        with open('log/solver.txt', 'w') as debugFile:
+            for i in range(1,finalDepth+1):
+                fg = encoder(i, traces)
+                fg.encodeFormula()
+
                 debugFile.write(repr(fg.solver))
             if fg.solver.check() == sat:
                 foundSat = True

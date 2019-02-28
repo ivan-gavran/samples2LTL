@@ -49,6 +49,16 @@ class DagSATEncoding:
         
         #keeping track of which positions in a tree (and in time) are visited, so that constraints are not generated twice
 #        self.visitedPositions = set()
+
+
+    def getInformativeVariables(self):
+        res = []
+        res += [v for v in self.x.values()]
+        res += [v for v in self.l.values()]
+        res += [v for v in self.r.values()]
+
+
+        return res
     """    
     the working variables are 
         - x[i][o]: i is a subformula (row) identifier, o is an operator or a propositional variable. Meaning is "subformula i is an operator (variable) o"
@@ -66,7 +76,7 @@ class DagSATEncoding:
         self.r = {(parentOperator, childOperator) : Bool('r_'+str(parentOperator)+'_'+str(childOperator))\
                                                  for parentOperator in range(1, self.formulaDepth)\
                                                  for childOperator in range(parentOperator)}
-        
+
         self.y = { (i, traceIdx, positionInTrace) : Bool('y_'+str(i)+'_'+str(traceIdx)+'_'+str(positionInTrace))\
                   for i in range(self.formulaDepth)\
                   for traceIdx, trace in enumerate(self.traces.acceptedTraces + self.traces.rejectedTraces)\
@@ -74,16 +84,14 @@ class DagSATEncoding:
         
         
         self.solver.set(unsat_core=unsatCore)
-        
-        
-        
-        
+
         self.exactlyOneOperator()       
         self.firstOperatorVariable()
-         
+
         self.propVariablesSemantics()
          
         self.operatorsSemantics()
+        self.noDanglingVariables()
         
         self.solver.assert_and_track(And( [ self.y[(self.formulaDepth - 1, traceIdx, 0)] for traceIdx in range(len(self.traces.acceptedTraces))] ), 'accepted traces should be accepting')
         self.solver.assert_and_track(And( [ Not(self.y[(self.formulaDepth - 1, traceIdx, 0)]) for traceIdx in range(len(self.traces.acceptedTraces), len(self.traces.acceptedTraces+self.traces.rejectedTraces))] ),\
@@ -108,6 +116,19 @@ class DagSATEncoding:
     def firstOperatorVariable(self):
         self.solver.assert_and_track(Or([self.x[k] for k in self.x if k[0] == 0 and k[1] in self.listOfVariables]),\
                                      'first operator a variable')
+
+    def noDanglingVariables(self):
+        if self.formulaDepth > 0:
+            self.solver.assert_and_track(
+                And([
+                    Or(
+                        AtLeast([self.l[(rowId, i)] for rowId in range(i+1, self.formulaDepth)]+ [1]),
+                        AtLeast([self.r[(rowId, i)] for rowId in range(i+1, self.formulaDepth)] + [1])
+                    )
+                    for i in range(self.formulaDepth - 1)]
+                ),
+                "no dangling variables"
+            )
     
     def exactlyOneOperator(self):
             
@@ -128,39 +149,95 @@ class DagSATEncoding:
             
             if (self.formulaDepth > 0):
                 self.solver.assert_and_track(And([\
-                                              AtMost( [self.l[k] for k in self.l if k[0] == i] +[1])\
+                                                Implies(
+                                                    Or(
+                                                        [self.x[(i, op)] for op in self.binaryOperators+self.unaryOperators]
+                                                    ),
+                                                    AtMost( [self.l[k] for k in self.l if k[0] == i] +[1])\
+                    )
                                               for i in range(1,self.formulaDepth)\
                                               ]),\
-                                              "at most one left operator"\
+                                              "at most one left operator for binary and unary operators"\
             )
             
             if (self.formulaDepth > 0):
                 self.solver.assert_and_track(And([\
-                                              AtLeast( [self.l[k] for k in self.l if k[0] == i] +[1])\
+                                                Implies(
+                                                    Or(
+                                                        [self.x[(i, op)] for op in
+                                                         self.binaryOperators + self.unaryOperators]
+                                                    ),
+                                                    AtLeast( [self.l[k] for k in self.l if k[0] == i] +[1])\
+                                                    )
                                               for i in range(1,self.formulaDepth)\
                                               ]),\
-                                              "at least one left operator"\
+                                              "at least one left operator for binary and unary operators"\
             )
-                
+
             if (self.formulaDepth > 0):
-                self.solver.assert_and_track(And([\
-                                              AtMost( [self.r[k] for k in self.r if k[0] == i] +[1])\
-                                              for i in range(1,self.formulaDepth)\
-                                              ]),\
-                                              "at most one right operator"\
-            )
-            
+                self.solver.assert_and_track(And([ \
+                    Implies(
+                        Or(
+                            [self.x[(i, op)] for op in self.binaryOperators]
+                        ),
+                        AtMost([self.r[k] for k in self.r if k[0] == i] + [1]) \
+                        )
+                    for i in range(1, self.formulaDepth) \
+                    ]), \
+                    "at most one right operator for binary" \
+                    )
+
             if (self.formulaDepth > 0):
-                self.solver.assert_and_track(And([\
-                                              AtLeast( [self.r[k] for k in self.r if k[0] == i] +[1])\
-                                              for i in range(1,self.formulaDepth)\
-                                              ]),\
-                                              "at least one right operator"\
-            )
-                
-            
-        
-    
+                self.solver.assert_and_track(And([ \
+                    Implies(
+                        Or(
+                            [self.x[(i, op)] for op in
+                             self.binaryOperators]
+                        ),
+                        AtLeast([self.r[k] for k in self.r if k[0] == i] + [1]) \
+                        )
+                    for i in range(1, self.formulaDepth) \
+                    ]), \
+                    "at least one right operator for binary" \
+                    )
+
+            if (self.formulaDepth > 0):
+                self.solver.assert_and_track(And([ \
+                    Implies(
+                        Or(
+                            [self.x[(i, op)] for op in
+                             self.unaryOperators]
+                        ),
+                        Not(
+                            Or([self.r[k] for k in self.r if k[0] == i]) \
+                        )
+                    )
+                    for i in range(1, self.formulaDepth) \
+                    ]), \
+                    "no right operators for unary" \
+                    )
+
+            if (self.formulaDepth > 0):
+                self.solver.assert_and_track(And([ \
+                    Implies(
+                        Or(
+                            [self.x[(i, op)] for op in
+                             self.listOfVariables]
+                        ),
+                        Not(
+                            Or(
+                                Or([self.r[k] for k in self.r if k[0] == i]), \
+                                Or([self.l[k] for k in self.l if k[0] == i])
+                            )
+
+                        )
+                    )
+                    for i in range(1, self.formulaDepth) \
+                    ]), \
+                    "no left or right children for variables" \
+                    )
+
+
     def operatorsSemantics(self):
 
 

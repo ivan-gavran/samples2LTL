@@ -7,53 +7,25 @@ import pdb
 from utils import config
 from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
+from formulaBuilder.satQuerying import get_models
 
-def run_solver(finalDepth, traces, startValue=1, step=1, q = None, encoder=DagSATEncoding):
-    
-    try:
-        if q != None:
-            separateProcess = True
-        else:
-            separateProcess = False
-        t = TicToc()
-        t.tic()
-        foundSat = False
-        
-        for i in range(startValue,finalDepth+1, step):
-            fg = encoder(i, traces)
-            fg.encodeFormula()
-            
-            if fg.solver.check() == sat:
-                foundSat = True
-                print("depth %d: sat"%i)
-                timePassed = t.tocvalue()
-                m = fg.solver.model()
-                
-                formula = fg.reconstructWholeFormula(m)
-                print(str(formula))
-                if separateProcess == True:
-                    q.put([formula, timePassed])
-                    break
-                else:
-                    return [formula, timePassed]
-                
-                
-            elif fg.solver.check() == unsat:
-                print("depth %d: unsat"% i)
-                
-                
-            else:
-                assert(False)
-        if foundSat == False:
-            timePassed = t.tocvalue()
-            print("unsat even after reaching max depth")
-            if separateProcess == True:
-                q.put([Formula("empty"), timePassed])
-            else:
-                return [Formula("empty"), timePassed]
-    except Exception as e:
-        print(e)
-        sys.exit(1)        
+def run_solver(finalDepth, traces, maxNumOfFormulas = 1, startValue=1, step=1, q = None, encoder=DagSATEncoding):
+    if q is not None:
+        separate_process = True
+    else:
+        separate_process = False
+
+    t = TicToc()
+    t.tic()
+    results = get_models(finalDepth, traces, startValue, step, encoder, maxNumOfFormulas)
+    time_passed = t.tocvalue()
+
+    if separate_process == True:
+        q.put([results, time_passed])
+    else:
+        return [results, time_passed]
+
+
 
 def run_dt_solver(traces, subsetSize=config.DT_SUBSET_SIZE, txtFile="treeRepresentation.txt", strategy=config.DT_SAMPLING_STRATEGY, decreaseRate=config.DT_DECREASE_RATE,\
                   repetitionsInsideSampling=config.DT_REPETITIONS_INSIDE_SAMPLING, restartsOfSampling=config.DT_RESTARTS_OF_SAMPLING, q = None, encoder=DagSATEncoding,):

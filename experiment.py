@@ -22,6 +22,7 @@ def main():
     parser.add_argument("--traces", dest="tracesFileName", default="traces/dummy.trace")
     parser.add_argument("--max_depth", dest="maxDepth", default='8')
     parser.add_argument("--start_depth", dest="startDepth", default='1')
+    parser.add_argument("--max_num_formulas", dest="numFormulas", default='1')
     parser.add_argument("--iteration_step", dest="iterationStep", default='1')
     parser.add_argument("--test_dt_method", dest="testDtMethod", default=False, action='store_true')
     parser.add_argument("--test_sat_method", dest="testSatMethod", default=False, action='store_true')
@@ -43,6 +44,7 @@ def main():
     logging.info("logging works")
     
     maxDepth = int(args.maxDepth)
+    numFormulas = int(args.numFormulas)
     startDepth = int(args.startDepth)
     traces = ExperimentTraces()
     iterationStep = int(args.iterationStep)
@@ -54,7 +56,7 @@ def main():
     print(traces)
     timeout = int(args.timeout)
     if args.testSatMethod == True:
-        [formula, timePassed] = run_solver(finalDepth=maxDepth, traces=traces, startValue=startDepth, step=iterationStep)
+        [formula, timePassed] = run_solver(finalDepth=maxDepth, traces=traces, maxNumOfFormulas = numFormulas, startValue=startDepth, step=iterationStep)
         print("formula: "+str(formula)+", timePassed: "+str(timePassed))
         
     
@@ -64,39 +66,7 @@ def main():
         logging.info("timePassed: {0}, numAtoms: {1}, numPrimitives: {2}".format(str(timePassed), str(numAtoms), str(numPrimitives)))
         
     
-    #print(traces)
-    
-#     if dtSolver == False:
-#         run_solver()
-#     
-#     #for i in range(3,maxDepth):
-#     for i in range(1,maxDepth):
-#         fg = DagSATEncoding(i, traces)
-#         fg.encodeFormula()
-#         
-#         
-#         
-#         if fg.solver.check() == sat:
-#             
-#             
-#             print("depth %d: sat"%i)
-#             m = fg.solver.model()
-#             formula = fg.reconstructWholeFormula(m)
-#             print(formula)
-#             if not traces.isFormulaConsistent(formula):
-#                 print("FORMULA NOT CONSISTENT")
-#             #d = fg.readPropValue('c',1,0, m)
-#             with open('log/model.txt', 'w') as debugFile:
-#                 debugFile.write(repr(m))
-#             break
-#         elif fg.solver.check() == unsat:
-#             print('depth %d: unsat'%i)
-#         else:
-#             print('unknown')
-# 
-#     with open('log/solver.txt', 'w') as debugFile:
-#         debugFile.write(repr(fg.solver))
-    
+
             
 
 if __name__ == "__main__":
