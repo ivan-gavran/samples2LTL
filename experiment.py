@@ -56,8 +56,8 @@ def main():
     print(traces)
     timeout = int(args.timeout)
     if args.testSatMethod == True:
-        [formula, timePassed] = run_solver(finalDepth=maxDepth, traces=traces, maxNumOfFormulas = numFormulas, startValue=startDepth, step=iterationStep)
-        print("formula: "+str(formula)+", timePassed: "+str(timePassed))
+        [formulas, timePassed] = run_solver(finalDepth=maxDepth, traces=traces, maxNumOfFormulas = numFormulas, startValue=startDepth, step=iterationStep)
+        print("formulas: "+str(sorted(formulas))+", timePassed: "+str(timePassed))
         
     
     if args.testDtMethod == True:

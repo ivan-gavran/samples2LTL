@@ -3,6 +3,7 @@ from z3 import *
 import sys
 import pdb
 import traceback
+import logging
 
 def get_models_fixed_size(z3Encoding, maxNumModels):
 
@@ -12,16 +13,19 @@ def get_models_fixed_size(z3Encoding, maxNumModels):
     while num_found_models < maxNumModels and z3Encoding.solver.check() == sat:
         m = z3Encoding.solver.model()
         formula = z3Encoding.reconstructWholeFormula(m)
-        print(str(formula))
-        results.append(formula)
-        num_found_models += 1
+        logging.info("before normalization formula: {}".format(formula))
+        formula.normalize()
+        logging.info(str(formula))
+        if formula not in results:
+            results.append(formula)
+            num_found_models += 1
         block = []
         #pdb.set_trace()
         #print(m)
         infVariables = z3Encoding.getInformativeVariables()
 
         for v in infVariables:
-            print((v, m[v]))
+             logging.debug((v, m[v]))
         for d in m:
             # d is a declaration
             if d.arity() > 0:
@@ -42,7 +46,7 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
 
 
         for i in range(startValue, finalDepth + 1, step):
-            print("====== size ===== {}".format(i))
+            logging.info("====== size ===== {}".format(i))
 
             fg = encoder(i, traces)
             fg.encodeFormula()

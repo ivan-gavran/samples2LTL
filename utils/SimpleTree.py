@@ -1,7 +1,7 @@
 import pdb
 import re
 from lark import Lark, Transformer
-
+symmetric_operators = ["&", "|"]
 class SimpleTree:
     def __init__(self, label = "dummy"):
         self.left = None
@@ -90,6 +90,32 @@ class Formula(SimpleTree):
                 self.right = None
         else:
             super().__init__(formulaArg)
+
+    def __lt__(self, other):
+        if self.getDepth() < other.getDepth():
+            return True
+        elif self.getDepth() > other.getDepth():
+            return False
+        else:
+            if self._isLeaf() and other._isLeaf():
+                return self.label < other.label
+            if self.left != other.left:
+                return self.left < other.left
+            elif self.right != other.right:
+                return self.right < other.right
+            else:
+                return self.label < other.label
+
+    def normalize(self):
+        temp = None
+        if self._isLeaf():
+            return
+        if not self.left < self.right:
+            temp = self.right
+            self.right = self.left
+            self.left = temp
+            self.left.normalize()
+            self.right.normalize()
     
     @classmethod
     def convertTextToFormula(cls, formulaText):
