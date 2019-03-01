@@ -1,0 +1,14 @@
+.ace_editor_container {
+  position: relative;
+  height: 300px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.ace_editor { 
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

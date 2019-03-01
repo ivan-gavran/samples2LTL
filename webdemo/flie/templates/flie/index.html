@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'flie/style.css' %}" media="screen">
+    <title>Test</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>flie: The Formal Language Inference Engine</h1>
+      
+      <p>Add some nice description here</p>
+
+      <div class="card shadow-sm" style="">
+        <h5 class="card-header bg-primary text-white">Inferrence of LTL formulas</h5>
+        <div class="card-body ace_editor_container">
+		  <div class="ace_editor" id="id_editor"></div>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center mt-3">
+        <button class="btn btn-primary shadow-sm" type="button" id="id_submit">
+          <span class="spinner-border spinner-border-sm mr-1" role="status" id="id_spinner" style="display: none;"></span>
+          <span id="id_submit_label">Learn</span>
+        </button>
+        <div class="ml-auto">
+          <span class="mr-2">Examples:</span>
+          <div class="btn-group shadow-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-primary" onclick="example1()">1</button>
+            <button type="button" class="btn btn-outline-primary" onclick="example2()">2</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success mt-4 alert-dismissible show shadow-sm" role="alert" id="id_result_div" style="display:none;">
+        <h4 class="alert-heading" id="id_result_header">placeholder</h4>
+        <hr>
+        <p class="mb-0" id="id_result_body"></p>
+        <button type="button" class="close" onclick="hide_result()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="mt-5">
+        <hr>
+        <span class="float-right text-uppercase small">
+            Imprint &ensp;|&ensp; Data Protection &ensp;|&ensp; <a href="https://www.mpi-sws.org/people/neider/" target="_blank">Contact</a>
+        </span>
+      </div>
+
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
+  <script src="{% static 'flie/examples.js' %}"></script>
+  <script src="{% static 'flie/ui.js' %}"></script>
+  <script>
+    function query_result (job_id) {
+        console.log(job_id);
+
+        (function worker () {
+          console.log(job_id);
+
+          // Run AJAX
+          $.ajax({
+            url: '{% url "result" %}',
+            data: {
+              'task_id': job_id,
+            },
+            dataType: 'json',
+            success: function (data) {
+
+              // Asynchronous computations has finished (successfully or with an error)
+              if (data.status == "finished" || data.status == "error") {
+
+                // Update UI
+                if (data.status == "finished") {
+                  show_result_success("Inferred LTL Formulas", data.result);
+                }
+                else {
+                  show_result_error("Error", "");
+                }
+
+                // Update UI
+                normal_button();
+
+              }
+
+              // Keep waiting ...
+              else if (data.status == "waiting" || data.status == "working") {
+	              setTimeout(worker, 1000);
+              }
+
+              // Timeout
+              else if (data.status == "timeout") {
+                // Show error
+                show_result_warning("Timeout", "Sorry, we had to terminate your task because it took too long.");
+
+                // Unlock button
+                normal_button();
+              }
+
+              // Unknown error
+              else if (data.status == "error") {
+                // Show error
+                show_result_error("Error", data.status);
+
+                // Unlock button
+                normal_button();
+              }
+
+              // Unknown error
+              else {
+                // Show error
+                show_result_error("Error", "An unknown error occurred. Please try again later.");
+
+                // Unlock button
+                normal_button();
+              }
+
+            },
+            error: function () {
+              // Show error
+              show_result_error("Error", "Lost connection to server. Please try again later.");
+
+              // Unlock button
+              normal_button();
+            },
+          });
+
+        })();
+
+    }
+
+    $(document).ready(function() {
+
+      // Setup ACE editor
+      var editor = ace.edit("id_editor");
+      editor.setTheme("ace/theme/eclipse");
+      editor.setShowPrintMargin(false);
+      editor.setFontSize('18px');
+
+      // Load Example 1 into editor
+      example1();
+
+      // Add functionality to submit button
+      $("#id_submit").click(function (event) {
+
+        // Update UI
+        working_button();
+        hide_result();
+
+        // Run AJAX
+        $.ajax({
+          url: '{% url "learn" %}',
+          data: {
+            'input': ace.edit("id_editor").getValue(),
+          },
+          dataType: 'json',
+          success: function (data) {
+            // Start querying
+            query_result (data.task_id);
+          },
+          error: function () {
+            // Show error
+            show_result_error("Error", "Could not contact server. Please try again later.");
+
+            // Unlock button
+            normal_button();
+          },
+        });
+      });
+    });
+  </script>
+  </body>
+</html>
