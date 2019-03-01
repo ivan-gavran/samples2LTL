@@ -7,7 +7,7 @@ from .models import Task
 from .tasks import learn_formula
 
 def index(request):
-    return render(request, 'flie/index.html')
+    return render(request, 'django_flie/index.html')
 
 def learn(request):
     # Get input data
