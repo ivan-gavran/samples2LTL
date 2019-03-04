@@ -79,6 +79,7 @@ Usage
 
   .. code-block:: console
 
+    python ./manage.py makemigrations
     python ./manage.py migrate
     
 2. Create one (or more) ``django-rq`` workers:
@@ -93,6 +94,6 @@ Usage
   
     python ./manage.py runserver
   
-  and visit http://127.0.0.1:8000/flie/.
+  and visit http://127.0.0.1:8000/django_flie/.
   
   Remember to never use Django's development server in a production environment.
