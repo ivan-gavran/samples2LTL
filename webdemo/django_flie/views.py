@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+import pdb
 
 import django_rq
 
@@ -11,6 +12,7 @@ def index(request):
 
 def learn(request):
     # Get input data
+    #pdb.set_trace()
     data = request.GET.get('input', None)
 
     # Get default queue
