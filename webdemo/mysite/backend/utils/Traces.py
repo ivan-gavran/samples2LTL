@@ -220,6 +220,7 @@ class ExperimentTraces:
         for tr in negative:
             trace = self._flieTraceToTrace(tr, literals)
             self.rejectedTraces.append(trace)
+        self.literals = literals
 
 
     def readTracesFromString(self, s):

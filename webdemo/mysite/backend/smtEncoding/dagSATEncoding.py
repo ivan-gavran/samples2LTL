@@ -397,6 +397,7 @@ class DagSATEncoding:
         return self.reconstructFormula(self.formulaDepth-1, model)   
         
     def reconstructFormula(self, rowId, model):
+
         def getValue(row, vars):
             tt = [k[1] for k in vars if k[0] == row and model[vars[k]] == True]
             if len(tt) > 1:
@@ -405,7 +406,8 @@ class DagSATEncoding:
                 return tt[0]
         operator = getValue(rowId, self.x)
         if operator in self.listOfVariables:
-            return Formula('x'+str(operator))
+            return Formula(self.traces.literals[int(operator)])
+
         elif operator in self.unaryOperators:
             leftChild = getValue(rowId, self.l)
             return Formula([operator, self.reconstructFormula(leftChild, model)])
