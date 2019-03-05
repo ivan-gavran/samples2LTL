@@ -108,7 +108,7 @@ class Formula(SimpleTree):
 
     def normalize(self):
         temp = None
-        if self._isLeaf():
+        if self._isLeaf() or self.right is None:
             return
         if not self.left < self.right:
             temp = self.right

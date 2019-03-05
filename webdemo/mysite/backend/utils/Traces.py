@@ -1,6 +1,7 @@
 import pdb
 from ..utils.SimpleTree import SimpleTree, Formula
 import io
+from bidict import bidict
 
 
 def lineToTrace(line):
@@ -177,7 +178,50 @@ class ExperimentTraces:
             tracesFile.write(str(self.depthOfSolution) + '\n')
             tracesFile.write("---\n")
             tracesFile.write(str(self.possibleSolution))
-                      
+
+    def _flieLiteralsStringToVector(self, v, literals):
+        vec = []
+        for l in literals:
+            if l in v:
+                vec.append(1)
+            else:
+                vec.append(0)
+        return vec
+
+    def _flieTraceToTrace(self, tracesString, literals):
+        try:
+            (initPart, lasso) = tracesString.split("|")
+        except:
+            raise Exception("every trace has to have initial part and a lasso part")
+        initPart = initPart.split(";")
+        lasso = lasso.split(";")
+        lassStart = len(initPart)
+        traceVector = [self._flieLiteralsStringToVector(v, literals) for v in initPart+lasso]
+        return Trace(traceVector, lassStart)
+
+
+
+    def readTracesFromFlieJson(self, data):
+
+        literals = data["literals"]
+        positive = data["positive"]
+        negative = data["negative"]
+        self.numVariables = len(literals)
+        try:
+            self.operators = data["operators"]
+        except:
+            self.operators = defaultOperators
+
+
+
+        for tr in positive:
+            trace = self._flieTraceToTrace(tr, literals)
+            self.acceptedTraces.append(trace)
+        for tr in negative:
+            trace = self._flieTraceToTrace(tr, literals)
+            self.rejectedTraces.append(trace)
+
+
     def readTracesFromString(self, s):
         stream = io.StringIO(s)
         self.readTracesFromStream(stream)

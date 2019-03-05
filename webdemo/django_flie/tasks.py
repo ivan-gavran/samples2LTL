@@ -1,10 +1,9 @@
-from django_rq import job
 from rq import get_current_job
 
-from .models import Task
+from utils.Traces import ExperimentTraces
+from webdemo.mysite.backend.solverRuns import run_solver
 
 # Just for testing
-import time
 
 
 def learn_formula(task):
@@ -17,14 +16,24 @@ def learn_formula(task):
     task.save()
 
     # Perform task
-    time.sleep (1)
+    #time.sleep (1)
+    try:
+        # Compute result
 
-    # Compute result
-    result = task.data
+        traces = ExperimentTraces
+        traces.readTracesFromString(task.data)
 
-    # Save task and mark it finished
-    task.result = result
-    task.status = 'finished'
-    task.save()
+        [formulas, timePassed] = run_solver(5, traces)
+
+
+        # Save task and mark it finished
+        task.result = str(formulas)
+        task.status = 'finished'
+        task.save()
+    except:
+        task.result = "sth went wrong"
+        task.status = 'error'
+        task.save()
+
 
     return

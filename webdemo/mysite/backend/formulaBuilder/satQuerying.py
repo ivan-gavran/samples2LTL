@@ -14,6 +14,7 @@ def get_models_fixed_size(z3Encoding, maxNumModels):
         logging.info("before normalization formula: {}".format(formula))
         formula.normalize()
         logging.info(str(formula))
+
         if formula not in results:
             results.append(formula)
             num_found_models += 1
