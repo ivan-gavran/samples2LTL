@@ -2,6 +2,8 @@ import pdb
 import re
 from lark import Lark, Transformer
 symmetric_operators = ["&", "|"]
+binary_operators = ["&", "|", "U","->"]
+unary_operators = ["X", "F", "G", "!"]
 class SimpleTree:
     def __init__(self, label = "dummy"):
         self.left = None
@@ -116,6 +118,14 @@ class Formula(SimpleTree):
             self.left = temp
             self.left.normalize()
             self.right.normalize()
+
+    def prettyPrint(self):
+        if self._isLeaf():
+            return self.label
+        if self.label in unary_operators:
+            return self.label +"("+self.left.prettyPrint()+")"
+        if self.label in binary_operators:
+            return "(" + self.left.prettyPrint()+") "+self.label+" ("+self.right.prettyPrint()+")"
     
     @classmethod
     def convertTextToFormula(cls, formulaText):
