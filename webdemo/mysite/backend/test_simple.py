@@ -1,14 +1,9 @@
 import glob
-import sys
-import pdb
 from z3 import *
 
-from smtEncoding.treeSATEncoding import TreeSATEncoding
-from smtEncoding.dagSATEncoding import DagSATEncoding
+from webdemo.mysite.backend import TreeSATEncoding
+from webdemo.mysite.backend import DagSATEncoding
 from utils.Traces import ExperimentTraces
-from utils.SimpleTree import Formula
-
-
 
 testTracesFolder ='traces/tests/'
 maxDepth = 5

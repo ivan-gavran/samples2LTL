@@ -1,4 +1,4 @@
-from formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy
+from ..formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy
 EXPERIMENTS_FOLDER = "experiments/"
 DT_DECREASE_RATE = 0.5
 DT_SAMPLING_STRATEGY = AtomBuildingStrategy.CHOOSE_NOT_SEPARATED

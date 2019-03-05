@@ -6,16 +6,11 @@ from pytictoc import TicToc
 import csv
 import os
 import json
-from smtEncoding.dagSATEncoding import DagSATEncoding
 from utils.Traces import ExperimentTraces
 from utils.SimpleTree import Formula
-from utils import config
 from multiprocessing import Process, Queue
-import time
 import argparse
-from _datetime import datetime
 from doctest import testfile
-from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
 from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 import logging
 from formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy

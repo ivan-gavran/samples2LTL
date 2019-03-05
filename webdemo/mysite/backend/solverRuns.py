@@ -1,13 +1,9 @@
-import sys
-from multiprocessing import Process, Queue
-from smtEncoding.dagSATEncoding import DagSATEncoding
+from .smtEncoding.dagSATEncoding import DagSATEncoding
 from pytictoc import TicToc
-from z3 import *
-import pdb
-from utils import config
-from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
-from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
-from formulaBuilder.satQuerying import get_models
+from .utils import config
+from .formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
+from .formulaBuilder.AtomBuilder import AtomBuilder
+from .formulaBuilder.satQuerying import get_models
 
 def run_solver(finalDepth, traces, maxNumOfFormulas = 1, startValue=1, step=1, q = None, encoder=DagSATEncoding):
     if q is not None:

@@ -1,5 +1,6 @@
 import pdb
-from utils.SimpleTree import SimpleTree, Formula
+from ..utils.SimpleTree import SimpleTree, Formula
+import io
 
 
 def lineToTrace(line):
@@ -177,9 +178,66 @@ class ExperimentTraces:
             tracesFile.write("---\n")
             tracesFile.write(str(self.possibleSolution))
                       
-    
-                    
-            
+    def readTracesFromString(self, s):
+        stream = io.StringIO(s)
+        self.readTracesFromStream(stream)
+
+    def readTracesFromStream(self, stream):
+
+        readingMode = 0
+
+
+        operators = None
+        for line in stream:
+            lassoStart = None
+            if '---' in line:
+                readingMode += 1
+            else:
+                if readingMode == 0:
+
+                    trace = lineToTrace(line)
+                    trace.intendedEvaluation = True
+
+                    self.acceptedTraces.append(trace)
+
+                elif readingMode == 1:
+                    trace = lineToTrace(line)
+                    trace.intendedEvaluation = False
+                    self.rejectedTraces.append(trace)
+
+                elif readingMode == 2:
+                    operators = [s.strip() for s in line.split(',')]
+
+                elif readingMode == 3:
+                    self.depthOfSolution = int(line)
+                elif readingMode == 4:
+                    possibleSolution = line.strip()
+                    if possibleSolution.lower() == "none":
+                        self.possibleSolution = None
+                    else:
+                        self.possibleSolution = Formula.convertTextToFormula(possibleSolution)
+
+                else:
+                    break
+        if operators == None:
+            self.operators = defaultOperators
+        else:
+            self.operators = operators
+
+        self.maxLengthOfTraces = 0
+        for trace in self.acceptedTraces + self.rejectedTraces:
+            if trace.lengthOfTrace > self.maxLengthOfTraces:
+                self.maxLengthOfTraces = trace.lengthOfTrace
+
+        # an assumption that number of variables is the same across all the traces
+        try:
+            self.numVariables = self.acceptedTraces[0].numVariables
+        except:
+            self.numVariables = self.rejectedTraces[0].numVariables
+        for trace in self.acceptedTraces + self.rejectedTraces:
+            if trace.numVariables != self.numVariables:
+                raise Exception("wrong number of variables")
+
     def readTracesFromFile(self, tracesFileName):
         
         pathToTracesFile = tracesFileName
@@ -237,5 +295,5 @@ class ExperimentTraces:
             self.numVariables = self.rejectedTraces[0].numVariables
         for trace in self.acceptedTraces + self.rejectedTraces:
             if trace.numVariables != self.numVariables:
-                raise
+                raise Exception("wrong num of variables")
         

@@ -1,12 +1,10 @@
-from utils.Traces import lineToTrace, ExperimentTraces
-from smtEncoding.treeSATEncoding import TreeSATEncoding
+from ..utils.Traces import lineToTrace, ExperimentTraces
 
 import random
-import pdb
 from z3 import *
 import logging
 from .AtomBuildingStrategy import AtomBuildingStrategy
-from utils import config
+from ..utils import config
 
 
 maxDepth = 8

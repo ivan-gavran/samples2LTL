@@ -1,6 +1,6 @@
 from z3 import *
 import pdb
-from utils.SimpleTree import SimpleTree, Formula
+from ..utils.SimpleTree import SimpleTree, Formula
 
 class DagSATEncoding:
     """

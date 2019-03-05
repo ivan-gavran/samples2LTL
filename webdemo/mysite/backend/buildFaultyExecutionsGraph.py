@@ -1,15 +1,8 @@
-from useCases.DependencyGraph import DependencyGraph
 from useCases.DependencyGraph2 import DependencyGraph2
-from useCases.StateOfNodesDependencyGraph import StateOfNodesDependencyGraph
-from useCases.AlternativeReceives import AlternativeReceives
-from useCases.ReceivesDependencyGraph import ReceivesDependencyGraph
-from useCases.ModifiedReceivesDependencyGraph import ModifiedReceivesDependencyGraph
+from webdemo.mysite.backend import ModifiedReceivesDependencyGraph
 import argparse
 import pdb
 from utils.Traces import ExperimentTraces, Trace
-import z3
-
-
 
 """
 this file creates traces from the logs of leader-election executions. The logs are created by hand from the automatic ones (folder "evenMoreAlternative") [the question is 

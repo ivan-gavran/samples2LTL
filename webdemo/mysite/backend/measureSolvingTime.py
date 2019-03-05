@@ -1,26 +1,18 @@
 import glob
-import sys
-import pdb
-from z3 import *
-from pytictoc import TicToc
 import csv
 import os
 import json
-from smtEncoding.treeSATEncoding import TreeSATEncoding
-from smtEncoding.dagSATEncoding import DagSATEncoding
+from webdemo.mysite.backend import TreeSATEncoding
+from webdemo.mysite.backend import DagSATEncoding
 from utils.Traces import ExperimentTraces
-from utils.SimpleTree import Formula
 from utils import config
 from multiprocessing import Process, Queue
 import time
 import argparse
 from _datetime import datetime
-from doctest import testfile
-from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
-from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 import logging
 from formulaBuilder.AtomBuildingStrategy import AtomBuildingStrategy
-from solverRuns import run_solver, run_dt_solver
+from webdemo.mysite.backend.solverRuns import run_solver, run_dt_solver
 
 
 
