@@ -27,9 +27,9 @@ def learn_formula(task):
         # Compute result
 
         traces = ExperimentTraces()
-        print("received data: {}".format(task.data))
+
         data = json.loads(task.data)
-        print("received data json: {}".format(data))
+        
         traces.readTracesFromFlieJson(data)
 
 
