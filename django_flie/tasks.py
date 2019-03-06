@@ -29,7 +29,7 @@ def learn_formula(task):
         traces = ExperimentTraces()
 
         data = json.loads(task.data)
-        
+
         traces.readTracesFromFlieJson(data)
 
 

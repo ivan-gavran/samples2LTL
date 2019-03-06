@@ -188,7 +188,7 @@ class ExperimentTraces:
                 vec.append(0)
         return vec
 
-    def _flieTraceToTrace(self, tracesString, literals):
+    def _flieTraceToTrace(self, tracesString):
         try:
             (initPart, lasso) = tracesString.split("|")
         except:
@@ -196,17 +196,41 @@ class ExperimentTraces:
         initPart = initPart.split(";")
         lasso = lasso.split(";")
         lassStart = len(initPart)
-        traceVector = [self._flieLiteralsStringToVector(v, literals) for v in initPart+lasso]
+        traceVector = [self._flieLiteralsStringToVector(v, self.literals) for v in initPart+lasso]
         return Trace(traceVector, lassStart)
+
+
+    def _getLiteralsFromData(self, data):
+
+        for tr in data:
+            try:
+                (initPart, lasso) = tr.split("|")
+            except:
+                raise Exception("every trace has to have initial part and a lasso part")
+            initPart = initPart.split(";")
+            lasso = lasso.split(";")
+            for tmstp in initPart + lasso:
+                lits = tmstp.split(",")
+                for lit in lits:
+                    lit = lit.strip()
+                    if not lit == "null" and not lit in self.literals:
+                        self.literals.append(lit)
 
 
 
     def readTracesFromFlieJson(self, data):
 
-        literals = data["literals"]
         positive = data["positive"]
         negative = data["negative"]
-        self.numVariables = len(literals)
+        self.literals = []
+        try:
+            self.literals = data["literals"]
+        except:
+            self._getLiteralsFromData(positive)
+            self._getLiteralsFromData(negative)
+            
+
+        self.numVariables = len(self.literals)
         try:
             self.operators = data["operators"]
         except:
@@ -215,12 +239,12 @@ class ExperimentTraces:
 
 
         for tr in positive:
-            trace = self._flieTraceToTrace(tr, literals)
+            trace = self._flieTraceToTrace(tr)
             self.acceptedTraces.append(trace)
         for tr in negative:
-            trace = self._flieTraceToTrace(tr, literals)
+            trace = self._flieTraceToTrace(tr)
             self.rejectedTraces.append(trace)
-        self.literals = literals
+
 
 
     def readTracesFromString(self, s):
