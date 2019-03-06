@@ -1,6 +1,6 @@
 import pdb
 import re
-from lark import Lark, Transformer
+#from lark import Lark, Transformer
 symmetric_operators = ["&", "|"]
 binary_operators = ["&", "|", "U","->"]
 unary_operators = ["X", "F", "G", "!"]
@@ -143,40 +143,40 @@ class Formula(SimpleTree):
         if self.label in binary_operators:
             return lb + self.left.prettyPrint()+ self.label+self.right.prettyPrint()+rb
     
-    @classmethod
-    def convertTextToFormula(cls, formulaText):
-
-        f = Formula()
-        try:
-            formula_parser = Lark(r"""
-                ?formula: _binary_expression
-                        |_unary_expression
-                        | constant
-                        | variable
-                !constant: "true"
-                        | "false"
-                _binary_expression: binary_operator "(" formula "," formula ")"
-                _unary_expression: unary_operator "(" formula ")"
-                variable: /x[0-9]*/
-                !binary_operator: "&" | "|" | "->" | "U"
-                !unary_operator: "F" | "G" | "!" | "X"
-
-                %import common.SIGNED_NUMBER
-                %import common.WS
-                %ignore WS
-             """, start = 'formula')
-
-
-            tree = formula_parser.parse(formulaText)
-            #print(tree.pretty())
-
-        except Exception as e:
-            print("can't parse formula %s" %formulaText)
-            print("error: %s" %e)
-
-
-        f = TreeToFormula().transform(tree)
-        return f
+    # @classmethod
+    # def convertTextToFormula(cls, formulaText):
+    #
+    #     f = Formula()
+    #     try:
+    #         formula_parser = Lark(r"""
+    #             ?formula: _binary_expression
+    #                     |_unary_expression
+    #                     | constant
+    #                     | variable
+    #             !constant: "true"
+    #                     | "false"
+    #             _binary_expression: binary_operator "(" formula "," formula ")"
+    #             _unary_expression: unary_operator "(" formula ")"
+    #             variable: /x[0-9]*/
+    #             !binary_operator: "&" | "|" | "->" | "U"
+    #             !unary_operator: "F" | "G" | "!" | "X"
+    #
+    #             %import common.SIGNED_NUMBER
+    #             %import common.WS
+    #             %ignore WS
+    #          """, start = 'formula')
+    #
+    #
+    #         tree = formula_parser.parse(formulaText)
+    #         #print(tree.pretty())
+    #
+    #     except Exception as e:
+    #         print("can't parse formula %s" %formulaText)
+    #         print("error: %s" %e)
+    #
+    #
+    #     f = TreeToFormula().transform(tree)
+    #     return f
     
     
     
@@ -210,24 +210,24 @@ class Formula(SimpleTree):
         
              
 
-class TreeToFormula(Transformer):
-        def formula(self, formulaArgs):
-            
-            return Formula(formulaArgs)
-        def variable(self, varName):
-            return Formula([str(varName[0]), None, None])
-        def constant(self, arg):
-            if str(arg[0]) == "true":
-                connector = "|"
-            elif str(arg[0]) == "false":
-                connector = "&"
-            return Formula([connector, Formula(["x0", None, None]), Formula(["!", Formula(["x0", None, None] ), None])])
-                
-        def binary_operator(self, args):
-            return str(args[0])
-        def unary_operator(self, args):
-            return str(args[0])
-    
-        
-        
-        
+# class TreeToFormula(Transformer):
+#         def formula(self, formulaArgs):
+#
+#             return Formula(formulaArgs)
+#         def variable(self, varName):
+#             return Formula([str(varName[0]), None, None])
+#         def constant(self, arg):
+#             if str(arg[0]) == "true":
+#                 connector = "|"
+#             elif str(arg[0]) == "false":
+#                 connector = "&"
+#             return Formula([connector, Formula(["x0", None, None]), Formula(["!", Formula(["x0", None, None] ), None])])
+#
+#         def binary_operator(self, args):
+#             return str(args[0])
+#         def unary_operator(self, args):
+#             return str(args[0])
+#
+#
+#
+#         
