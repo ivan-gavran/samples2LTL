@@ -2,6 +2,9 @@ from z3 import *
 import sys
 import traceback
 import logging
+from ..utils.SimpleTree import Formula
+
+
 
 def get_models_fixed_size(z3Encoding, maxNumModels):
 
@@ -12,7 +15,7 @@ def get_models_fixed_size(z3Encoding, maxNumModels):
         m = z3Encoding.solver.model()
         formula = z3Encoding.reconstructWholeFormula(m)
         logging.info("before normalization formula: {}".format(formula))
-        formula.normalize()
+        formula = Formula.normalize(formula)
         logging.info(str(formula))
 
         if formula not in results:
@@ -50,9 +53,11 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
             fg = encoder(i, traces)
             fg.encodeFormula()
             fixed_size_results = get_models_fixed_size(fg, maxNumModels - num_found_formulas)
-            results += fixed_size_results
+            for res in fixed_size_results:
+                if res not in results:
+                    results.append(res)
+                    num_found_formulas += 1
 
-            num_found_formulas += len(fixed_size_results)
          #   pdb.set_trace()
             if num_found_formulas >= maxNumModels:
                 break

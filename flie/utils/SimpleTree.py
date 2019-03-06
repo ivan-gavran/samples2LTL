@@ -4,6 +4,9 @@ from lark import Lark, Transformer
 symmetric_operators = ["&", "|"]
 binary_operators = ["&", "|", "U","->"]
 unary_operators = ["X", "F", "G", "!"]
+
+
+
 class SimpleTree:
     def __init__(self, label = "dummy"):
         self.left = None
@@ -108,16 +111,23 @@ class Formula(SimpleTree):
             else:
                 return self.label < other.label
 
-    def normalize(self):
-        temp = None
-        if self._isLeaf() or self.right is None:
-            return
-        if not self.left < self.right:
-            temp = self.right
-            self.right = self.left
-            self.left = temp
-            self.left.normalize()
-            self.right.normalize()
+    @classmethod
+    def normalize(cls, f):
+        if f is None:
+            return None
+        if f._isLeaf():
+            return Formula([f.label, f.left, f.right])
+        fLeft = Formula.normalize(f.left)
+        fRight = Formula.normalize(f.right)
+
+        if fLeft == fRight and f.label in ['&', 'U', '|', '->']:
+
+            return Formula.normalize(fLeft)
+
+        if f.label in symmetric_operators and not fLeft < fRight:
+            return Formula([f.label, fRight, fLeft])
+        return Formula([f.label, fLeft, fRight])
+
 
     def prettyPrint(self, top=False):
         if top is True:
@@ -135,7 +145,7 @@ class Formula(SimpleTree):
     
     @classmethod
     def convertTextToFormula(cls, formulaText):
-        
+
         f = Formula()
         try:
             formula_parser = Lark(r"""
@@ -150,21 +160,21 @@ class Formula(SimpleTree):
                 variable: /x[0-9]*/
                 !binary_operator: "&" | "|" | "->" | "U"
                 !unary_operator: "F" | "G" | "!" | "X"
-                
+
                 %import common.SIGNED_NUMBER
                 %import common.WS
-                %ignore WS 
+                %ignore WS
              """, start = 'formula')
-        
-            
+
+
             tree = formula_parser.parse(formulaText)
             #print(tree.pretty())
-            
+
         except Exception as e:
             print("can't parse formula %s" %formulaText)
             print("error: %s" %e)
-            
-        
+
+
         f = TreeToFormula().transform(tree)
         return f
     
