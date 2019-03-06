@@ -25,7 +25,7 @@ def learn(request):
     #task.save()
 
     # Create and queue job
-    job = queue.enqueue(learn_formula, args=[task], timeout=2)
+    job = queue.enqueue(learn_formula, args=[task], timeout=60)
 
     # Generate response
     json_response = {

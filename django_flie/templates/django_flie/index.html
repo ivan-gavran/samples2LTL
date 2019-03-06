@@ -31,6 +31,7 @@
           <div class="btn-group shadow-sm" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-primary" onclick="example1()">1</button>
             <button type="button" class="btn btn-outline-primary" onclick="example2()">2</button>
+            <button type="button" class="btn btn-outline-primary" onclick="example3()">3</button>
           </div>
         </div>
       </div>
@@ -78,7 +79,18 @@
 
                 // Update UI
                 if (data.status == "finished") {
-                  show_result_success("Inferred LTL Formulas", data.result);
+
+                  // Prepare the HTML output
+                  var arr = JSON.parse(data.result.replace(/'/g, "\""));
+                  var output = "<ul>";
+
+                  var arrLength = arr.length;
+                  for (var i = 0; i < arrLength; i++) {
+                    output += "\n<li>" + arr[i] + "</li>";
+                  }
+                  output += "</ul>";
+
+                  show_result_success("Inferred LTL Formulas", output);
                 }
                 else {
                   show_result_error("Error", "");
