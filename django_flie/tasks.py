@@ -1,8 +1,8 @@
 import sys
 from rq import get_current_job
 
-from backend.utils.Traces import ExperimentTraces
-from backend.solverRuns import run_solver
+from flie.utils.Traces import ExperimentTraces
+from flie.solverRuns import run_solver
 import json
 
 

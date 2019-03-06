@@ -10,3 +10,5 @@ log/
 **.gz
 **.log
 .idea
+django_flie/migrations
+mysite
