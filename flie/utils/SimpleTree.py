@@ -119,13 +119,19 @@ class Formula(SimpleTree):
             self.left.normalize()
             self.right.normalize()
 
-    def prettyPrint(self):
+    def prettyPrint(self, top=False):
+        if top is True:
+            lb = ""
+            rb = ""
+        else:
+            lb ="("
+            rb = ")"
         if self._isLeaf():
             return self.label
         if self.label in unary_operators:
-            return self.label +"("+self.left.prettyPrint()+")"
+            return lb + self.label +self.left.prettyPrint()+rb
         if self.label in binary_operators:
-            return "(" + self.left.prettyPrint()+") "+self.label+" ("+self.right.prettyPrint()+")"
+            return lb + self.left.prettyPrint()+ self.label+self.right.prettyPrint()+rb
     
     @classmethod
     def convertTextToFormula(cls, formulaText):

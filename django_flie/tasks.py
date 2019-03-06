@@ -48,7 +48,7 @@ def learn_formula(task):
         [formulas, timePassed] = run_solver(finalDepth = maxDepth, traces = traces, maxNumOfFormulas = numberOfFormulas, startValue=1, step=1)
 
         # Save task and mark it finished
-        task.result = [f.prettyPrint() for f in formulas]
+        task.result = [f.prettyPrint(top=True) for f in formulas]
         task.status = 'finished'
         task.save()
     except Exception:
