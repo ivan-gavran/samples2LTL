@@ -6,13 +6,14 @@ from flie.solverRuns import run_solver
 import json
 
 
+
 import traceback
 
 
 # Just for testing
 
 
-def learn_formula(task):
+def learn_formula(task, baseUrl = ""):
     # This creates a Task instance to save the job instance and job result
 
     # Get job
@@ -27,10 +28,17 @@ def learn_formula(task):
         # Compute result
 
         traces = ExperimentTraces()
+        try:
+            data = json.loads(task.data)
+            traces.readTracesFromFlieJson(data)
+        except Exception:
+            task.result = "Could not parse the examples. Please check the syntax guide at "+str(baseUrl)+"/syntax_guide"
+            traceback.print_exc(file=sys.stdout)
+            task.status = 'error'
+            task.save()
+            return
 
-        data = json.loads(task.data)
 
-        traces.readTracesFromFlieJson(data)
 
 
 
