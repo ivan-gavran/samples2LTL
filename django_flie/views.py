@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-import pdb
+from django.contrib.sites.shortcuts import get_current_site
+
 
 import django_rq
 
@@ -14,6 +15,8 @@ def learn(request):
     # Get input data
     #pdb.set_trace()
     data = request.GET.get('input', None)
+    baseUrl = get_current_site(request)
+
 
     # Get default queue
     queue = django_rq.get_queue('default') #, is_async=False)
@@ -25,7 +28,7 @@ def learn(request):
     #task.save()
 
     # Create and queue job
-    job = queue.enqueue(learn_formula, args=[task], timeout=60)
+    job = queue.enqueue(learn_formula, args=[task, baseUrl], timeout=60)
 
     # Generate response
     json_response = {

@@ -75,31 +75,30 @@
             success: function (data) {
 
               // Asynchronous computations has finished (successfully or with an error)
-              if (data.status == "finished" || data.status == "error") {
+
 
                 // Update UI
-                if (data.status == "finished") {
+              if (data.status == "finished") {
 
-                  // Prepare the HTML output
-                  var arr = JSON.parse(data.result.replace(/'/g, "\""));
-                  var output = "<ul>";
+                // Prepare the HTML output
+                var arr = JSON.parse(data.result.replace(/'/g, "\""));
+                var output = "<ul>";
 
-                  var arrLength = arr.length;
-                  for (var i = 0; i < arrLength; i++) {
-                    output += "\n<li>" + arr[i] + "</li>";
-                  }
-                  output += "</ul>";
-
-                  show_result_success("Inferred LTL Formulas", output);
+                var arrLength = arr.length;
+                for (var i = 0; i < arrLength; i++) {
+                  output += "\n<li>" + arr[i] + "</li>";
                 }
-                else {
-                  show_result_error("Error", "");
-                }
+                output += "</ul>";
 
-                // Update UI
-                normal_button();
+                show_result_success("Inferred LTL Formulas", output);
 
+              // Update UI
+              normal_button();
               }
+
+
+
+
 
               // Keep waiting ...
               else if (data.status == "waiting" || data.status == "working") {
