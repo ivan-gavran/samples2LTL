@@ -1,7 +1,6 @@
 import pdb
 from ..utils.SimpleTree import SimpleTree, Formula
 import io
-from bidict import bidict
 
 
 def lineToTrace(line):

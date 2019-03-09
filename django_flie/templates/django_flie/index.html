@@ -12,10 +12,13 @@
     <div class="container">
       <h1>flie: The Formal Language Inference Engine</h1>
       
-      <p>Add some nice description here</p>
+      <p>
+        flie lets you infer fomulas in <a href="https://en.wikipedia.org/wiki/Linear_temporal_logic" target="_blank">Linear Temporal Logic (LTL)</a>.</br>
+        Consult the examples below or the <a href="" target="_blank">syntax guide</a> for detailed information about flie's input language.
+     </p>
 
       <div class="card shadow-sm" style="">
-        <h5 class="card-header bg-primary text-white">Inferrence of LTL formulas</h5>
+        <h5 class="card-header bg-primary text-white">Inference of LTL formulas</h5>
         <div class="card-body ace_editor_container">
 		  <div class="ace_editor" id="id_editor"></div>
         </div>
@@ -27,7 +30,7 @@
           <span id="id_submit_label">Learn</span>
         </button>
         <div class="ml-auto">
-          <span class="mr-2">Examples:</span>
+          <span class="mr-2">Examples</span>
           <div class="btn-group shadow-sm" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-primary" onclick="example1()">1</button>
             <button type="button" class="btn btn-outline-primary" onclick="example2()">2</button>
@@ -92,13 +95,9 @@
 
                 show_result_success("Inferred LTL Formulas", output);
 
-              // Update UI
-              normal_button();
+                // Update UI
+                normal_button();
               }
-
-
-
-
 
               // Keep waiting ...
               else if (data.status == "waiting" || data.status == "working") {
