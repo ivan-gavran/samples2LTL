@@ -110,7 +110,9 @@ class Formula(SimpleTree):
                 return self.right < other.right
             else:
                 return self.label < other.label
-
+    """
+    normalization in an incomplete method to eliminate equivalent formulas
+    """
     @classmethod
     def normalize(cls, f):
         if f is None:
@@ -120,10 +122,19 @@ class Formula(SimpleTree):
         fLeft = Formula.normalize(f.left)
         fRight = Formula.normalize(f.right)
 
+        # elimiting p&p and similar
         if fLeft == fRight and f.label in ['&', 'U', '|', '->']:
 
             return Formula.normalize(fLeft)
 
+        # eliminating Fp U p and !p U p
+        if f.label == 'U':
+            if fLeft.label == 'F' or fLeft.label == '!':
+                fLeftLeft = Formula.normalize(fLeft.left)
+                if fLeftLeft == fRight:
+                    return Formula.normalize(Formula(['F', fLeft]))
+
+        # if there is p | q, don't add q | p
         if f.label in symmetric_operators and not fLeft < fRight:
             return Formula([f.label, fRight, fLeft])
         return Formula([f.label, fLeft, fRight])
