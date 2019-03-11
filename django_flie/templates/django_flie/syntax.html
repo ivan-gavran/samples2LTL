@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'django_flie/style.css' %}" media="screen">
+    <title>flie: The Formal Language Inference Engine</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>flie: The Formal Language Inference Engine</h1>
+      
+      <p>
+          Options for flie can be specified in the <a href="https://en.wikipedia.org/wiki/JSON#Example" target="_blank">JSON format</a>. (Don't forget commas between every two properties!)</p>
+          <p> The properties to specify are:
+          <ul>
+            <li>
+                <b>literals</b>: propositional variables that will be part of positive or negative traces (not obligatory. If omitted, will be filled by everything occurring
+        in traces)
+            </li>
+            <li><b>positive</b>: traces (paths) that the formula should model. They are formatted as the <em>initial</em> and the <em>lasso</em> part,
+                separated by a vertical bar (|). Both parts consist of timesteps separated by a semi-colon (;).
+                Each timestep contains the literals (propositional variables) that hold true in it, separated by a comma (,). If none of the literals
+            is true in a timestep, it should be either empty, or a reserved word "null".</li>
+
+        <li><b>negative</b>: traces that the formula should <b>not</b> model. the same format as the property <em>positive</em></li>
+
+        <li><b>number-of-formulas</b>: how many formulas flie should find (default: 1)
+
+        <li><b>max-depth-of-formula</b>: maximum depth of any formula found by flie (default: 5)
+
+        <li><b>operators</b>: a list of LTL operators allowed in a formula (default: ["F", "->", "&", "|", "U", "G", "X"])
+
+    </ul>
+     </p>
+
+         <div class="card shadow-sm" style="">
+        <h5 class="card-header bg-primary text-white">Example</h5>
+        <div class="card-body ace_editor_container">
+		  <div class="ace_editor" id="example_editor"></div>
+        </div>
+      </div>
+
+    <div class="mt-5">
+        <hr>
+        <span class="float-right text-uppercase small">
+            <a href="https://imprint.mpi-klsb.mpg.de/sws/flie.mpi-sws.org" target="_blank">Imprint</a> &ensp;|&ensp; <a href="https://data-protection.mpi-klsb.mpg.de/sws/flie.mpi-sws.org" target="_blank">Data Protection</a> &ensp;|&ensp; <a href="https://www.mpi-sws.org/people/neider/" target="_blank">Contact</a>
+        </span>
+      </div>
+
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
+  <script src="{% static 'django_flie/examples.js' %}"></script>
+  <script src="{% static 'django_flie/ui.js' %}"></script>
+
+    <script>
+  $(document).ready(function() {
+
+      // Setup ACE editor
+      var editor = ace.edit("example_editor");
+      editor.setTheme("ace/theme/eclipse");
+      editor.setShowPrintMargin(false);
+      editor.setFontSize('18px');
+      editor.setReadOnly(true);
+
+      // Load Example 1 into editor
+      exampleSyntax();
+
+    });
+  </script>
+  </body>
+
+</html>

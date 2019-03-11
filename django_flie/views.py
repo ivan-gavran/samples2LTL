@@ -11,6 +11,9 @@ from .tasks import learn_formula
 def index(request):
     return render(request, 'django_flie/index.html')
 
+def syntax(request):
+    return render(request, 'django_flie/syntax.html')
+
 def learn(request):
     # Get input data
     #pdb.set_trace()

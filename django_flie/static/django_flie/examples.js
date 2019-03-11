@@ -9,3 +9,7 @@ function example2 () {
 function example3 () {
   ace.edit("id_editor").setValue("{\n\"literals\": [\"p\", \"q\", \"r\"],\n\"positive\":\n  [\n    \"p,q; p; null| p\",\n    \"null; q; null| p\"\n  ],\n\"negative\":\n  [\n    \"; p; null| p\"\n  ],\n\"number-of-formulas\": 3\n}", 1);
 }
+
+function exampleSyntax () {
+  ace.edit("example_editor").setValue("{\n\"positive\":\n  [\n    \"p,q; p; null| p\",\n    \"null; q; null| p\"\n  ],\n\"negative\":\n  [\n    \"r; p; null| p\"\n  ],\n\"number-of-formulas\": 3,\n\"max-depth-of-formula\": 4,\n\"operators\":[\"F\", \"->\", \"&\", \"G\", \"X\"]\n}", 1);
+}

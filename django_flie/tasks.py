@@ -32,7 +32,7 @@ def learn_formula(task, baseUrl = ""):
             data = json.loads(task.data)
             traces.readTracesFromFlieJson(data)
         except Exception:
-            task.result = "Could not parse the examples. Please check the syntax guide at "+str(baseUrl)+"/syntax_guide"
+            task.result = 'Could not parse the examples. Please check the <a href="/django_flie/syntax", target="_blank">syntax guide</a>'
             traceback.print_exc(file=sys.stdout)
             task.status = 'error'
             task.save()
