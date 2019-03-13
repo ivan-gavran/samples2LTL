@@ -24,8 +24,9 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
             solverModel = fg.solver.model()
             formula = fg.reconstructWholeFormula(solverModel)
             logging.debug("found formula {}".format(formula))
+            #print("found formula {}".format(formula))
             formula = Formula.normalize(formula)
-            logging.debug("normalized formula {}".format(formula))
+            #print("normalized formula {}".format(formula))
             if formula not in results:
                 results.append(formula)
 

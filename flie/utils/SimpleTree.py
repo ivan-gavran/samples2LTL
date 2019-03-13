@@ -122,17 +122,64 @@ class Formula(SimpleTree):
         fLeft = Formula.normalize(f.left)
         fRight = Formula.normalize(f.right)
 
-        # elimiting p&p and similar
-        if fLeft == fRight and f.label in ['&', 'U', '|']:
+        if fLeft.label == "true":
+            if f.label in ['|', 'F', 'G', 'X']:
+                return Formula("true")
+            if f.label in ["&", "->"]:
+                return Formula.normalize(fRight)
+            if f.label == "!":
+                return Formula("false")
+            if f.label == "U":
+                return Formula.normalize(Formula(["F", fRight, None]))
 
-            return Formula.normalize(fLeft)
+        if fLeft.label == "false":
+            if f.label in ['->', '!']:
+                return Formula["true"]
+            if f.label in ['&', 'F', 'G', 'X']:
+                return Formula["false"]
+            if f.label in ['|', 'U']:
+                return Formula.normalize(fRight)
+
+        if not fRight is None:
+            if fRight.label == "true":
+                if f.label in ['|',  "->", 'U']:
+                    return Formula("true")
+                if f.label in ["&"]:
+                    return Formula.normalize(fRight)
+
+            if fRight.label == "false":
+                if f.label in []:
+                    return Formula["true"]
+                if f.label in ['&', 'U']:
+                    return Formula["false"]
+                if f.label in ['|']:
+                    return Formula.normalize(fRight)
+                if f.label in ['->']:
+                    return Formula.normalize(Formula(["!", fRight,None]))
+
+
+
+        # elimiting p&p and similar
+        if fLeft == fRight:
+            if f.label in ['&', 'U', '|']:
+                return Formula.normalize(fLeft)
+            else:
+                return Formula("true")
+
 
         # eliminating Fp U p and !p U p
         if f.label == 'U':
             if fLeft.label == 'F' or fLeft.label == '!':
                 fLeftLeft = Formula.normalize(fLeft.left)
                 if fLeftLeft == fRight:
-                    return Formula.normalize(Formula(['F', fLeft]))
+                    return Formula.normalize(Formula(['F', fLeftLeft]))
+            if fRight.label == 'F':
+                fRightLeft = Formula.normalize(fRight.left)
+                if fRightLeft == fLeft:
+                    return fRight
+
+        if f.label == 'F' and fLeft.label == 'F':
+            return fLeft
 
         # if there is p | q, don't add q | p
         if f.label in symmetric_operators and not fLeft < fRight:
