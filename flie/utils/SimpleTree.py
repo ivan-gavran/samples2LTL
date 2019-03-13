@@ -123,7 +123,7 @@ class Formula(SimpleTree):
         fRight = Formula.normalize(f.right)
 
         # elimiting p&p and similar
-        if fLeft == fRight and f.label in ['&', 'U', '|', '->']:
+        if fLeft == fRight and f.label in ['&', 'U', '|']:
 
             return Formula.normalize(fLeft)
 
