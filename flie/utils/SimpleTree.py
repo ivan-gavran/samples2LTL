@@ -115,6 +115,7 @@ class Formula(SimpleTree):
     """
     @classmethod
     def normalize(cls, f):
+
         if f is None:
             return None
         if f._isLeaf():
@@ -145,7 +146,7 @@ class Formula(SimpleTree):
                 if f.label in ['|',  "->", 'U']:
                     return Formula("true")
                 if f.label in ["&"]:
-                    return Formula.normalize(fRight)
+                    return Formula.normalize(fLeft)
 
             if fRight.label == "false":
                 if f.label in []:
