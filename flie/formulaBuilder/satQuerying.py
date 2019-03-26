@@ -23,10 +23,10 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
         else:
             solverModel = fg.solver.model()
             formula = fg.reconstructWholeFormula(solverModel)
-            logging.debug("found formula {}".format(formula))
+            logging.info("found formula {}".format(formula))
             #print("found formula {}".format(formula))
             formula = Formula.normalize(formula)
-            #print("normalized formula {}".format(formula))
+            logging.info("normalized formula {}".format(formula))
             if formula not in results:
                 results.append(formula)
 
@@ -36,8 +36,10 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
             # print(m)
             infVariables = fg.getInformativeVariables()
 
+            logging.debug("informative variables of the model:")
             for v in infVariables:
                 logging.debug((v, solverModel[v]))
+            logging.debug("===========================")
             for d in solverModel:
                 # d is a declaration
                 if d.arity() > 0:
