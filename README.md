@@ -2,6 +2,8 @@
 
 The goal is to learn an LTL formula that separates set of positive (P) and negative (N) traces. The resulting formula should be a model for every trace in P and should not be a model for any of the traces from N.
 There are two methods in this repository - one that encodes the problem as a satisfiability of Boolean formula and gives it to Z3 solver, and the other that is based on decision tree learning.
+
+Webdemo is available at [flie.mpi-sws.org](https://flie.mpi-sws.org/)
  
 ## Setup
 - setup a virtualenvironment for python 3.6 ([link](http://virtualenvwrapper.readthedocs.io/en/latest/)) and activate it (`workon ...`)
