@@ -229,9 +229,9 @@ class Formula(SimpleTree):
         if self._isLeaf():
             return self.label
         if self.label in unary_operators:
-            return lb + self.label + self.left.prettyPrint() + rb
+            return lb + self.label +" "+ self.left.prettyPrint() + rb
         if self.label in binary_operators:
-            return lb + self.left.prettyPrint() + self.label + self.right.prettyPrint() + rb
+            return lb + self.left.prettyPrint() +" "+  self.label +" "+ self.right.prettyPrint() + rb
     
     
     

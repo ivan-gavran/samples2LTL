@@ -27,7 +27,7 @@ def main():
     parser.add_argument("--test_dt_method", dest="testDtMethod", default=False, action='store_true')
     parser.add_argument("--test_sat_method", dest="testSatMethod", default=False, action='store_true')
     parser.add_argument("--timeout", dest="timeout", default=600, help="timeout in seconds")
-    parser.add_argument("--log", dest="loglevel", default="WARNING")
+    parser.add_argument("--log", dest="loglevel", default="INFO")
     args,unknown = parser.parse_known_args()
     tracesFileName = args.tracesFileName
     
@@ -41,7 +41,7 @@ def main():
     
     numeric_level = args.loglevel.upper()
     logging.basicConfig(level=numeric_level)
-    logging.info("logging works")
+
     
     maxDepth = int(args.maxDepth)
     numFormulas = int(args.numFormulas)
@@ -53,11 +53,11 @@ def main():
     traces = ExperimentTraces()
     traces.readTracesFromFile(tracesFileName)
     solvingTimeout = int(args.timeout)
-    print(traces)
+    #print(traces)
     timeout = int(args.timeout)
     if args.testSatMethod == True:
         [formulas, timePassed] = run_solver(finalDepth=maxDepth, traces=traces, maxNumOfFormulas = numFormulas, startValue=startDepth, step=iterationStep)
-        print("formulas: "+str(sorted(formulas))+", timePassed: "+str(timePassed))
+        logging.info("formulas: "+str([f.prettyPrint(f) for f in formulas])+", timePassed: "+str(timePassed))
         
     
     if args.testDtMethod == True:
