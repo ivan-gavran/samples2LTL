@@ -217,9 +217,15 @@ class ExperimentTraces:
                         self.literals.append(lit)
 
     def readTracesFromFlieJson(self, data):
+        try:
+            positive = data["positive"]
+        except:
+            positive = []
 
-        positive = data["positive"]
-        negative = data["negative"]
+        try:
+            negative = data["negative"]
+        except:
+            negative = []
         self.literals = []
         try:
             self.literals = data["literals"]
@@ -239,6 +245,14 @@ class ExperimentTraces:
         for tr in negative:
             trace = self._flieTraceToTrace(tr)
             self.rejectedTraces.append(trace)
+
+        try:
+            safety_restrictions = data["safety-restrictions"]
+        except:
+            safety_restrictions = []
+        self.safety_restrictions = []
+        for formula_text in safety_restrictions:
+            self.safety_restrictions.append(Formula.convertTextToFormula(formula_text))
 
     def readTracesFromString(self, s):
         stream = io.StringIO(s)

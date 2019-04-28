@@ -198,12 +198,13 @@ class Formula(SimpleTree):
                         | "false"
                 _binary_expression: binary_operator "(" formula "," formula ")"
                 _unary_expression: unary_operator "(" formula ")"
-                variable: /x[0-9]*/
+                variable: WORD
                 !binary_operator: "&" | "|" | "->" | "U"
                 !unary_operator: "F" | "G" | "!" | "X"
                 
                 %import common.SIGNED_NUMBER
                 %import common.WS
+                %import common.WORD
                 %ignore WS 
              """, start = 'formula')
         

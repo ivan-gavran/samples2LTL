@@ -1,0 +1,25 @@
+{
+  "literals": [
+    "p",
+    "q",
+    "r"
+  ],
+  "positive": [
+    "p,q; p; null| p",
+    "null; q; null| p"
+  ],
+  "number-of-formulas": 3,
+  "max-depth-of-formula": 4,
+  "operators": [
+    "F",
+    "->",
+    "&",
+    "|",
+    "U",
+    "G",
+    "X"
+  ],
+  "safety-restrictions": [
+    "G(!(r))"
+  ]
+}

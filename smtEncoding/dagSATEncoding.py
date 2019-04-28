@@ -394,25 +394,28 @@ class DagSATEncoding:
                                                                 for leftArg in range(i) for rightArg in range(i) ])),\
                                                     'semantics of Until operator for trace %d and depth %d'%(traceIdx, i))
     def reconstructWholeFormula(self, model):
-        return self.reconstructFormula(self.formulaDepth-1, model)   
-        
+        return self.reconstructFormula(self.formulaDepth-1, model)
+
     def reconstructFormula(self, rowId, model):
+
         def getValue(row, vars):
             tt = [k[1] for k in vars if k[0] == row and model[vars[k]] == True]
             if len(tt) > 1:
                 raise Exception("more than one true value")
             else:
                 return tt[0]
+
         operator = getValue(rowId, self.x)
         if operator in self.listOfVariables:
-            return Formula('x'+str(operator))
+            return Formula(self.traces.literals[int(operator)])
+
         elif operator in self.unaryOperators:
             leftChild = getValue(rowId, self.l)
             return Formula([operator, self.reconstructFormula(leftChild, model)])
         elif operator in self.binaryOperators:
             leftChild = getValue(rowId, self.l)
             rightChild = getValue(rowId, self.r)
-            return Formula([operator, self.reconstructFormula(leftChild,model), self.reconstructFormula(rightChild, model)])
+            return Formula([operator, self.reconstructFormula(leftChild, model), self.reconstructFormula(rightChild, model)])
         
     
         

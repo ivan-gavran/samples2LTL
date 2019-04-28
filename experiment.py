@@ -7,6 +7,7 @@ from solverRuns import run_solver, run_dt_solver
 from utils.Traces import Trace, ExperimentTraces
 from multiprocessing import Process, Queue
 import logging
+import json
 
 def helper(m, d, vars):
     tt = { k : m[vars[k]] for k in vars if k[0] == d }
@@ -29,7 +30,7 @@ def main():
     parser.add_argument("--timeout", dest="timeout", default=600, help="timeout in seconds")
     parser.add_argument("--log", dest="loglevel", default="INFO")
     args,unknown = parser.parse_known_args()
-    tracesFileName = args.tracesFileName
+
     
     
     """
@@ -48,10 +49,13 @@ def main():
     startDepth = int(args.startDepth)
     traces = ExperimentTraces()
     iterationStep = int(args.iterationStep)
-    traces.readTracesFromFile(args.tracesFileName)
+    try:
+        traces.readTracesFromFile(args.tracesFileName)
+    except:
+        jsonTraces = json.load(open(args.tracesFileName))
+        traces.readTracesFromFlieJson(jsonTraces)
     finalDepth = int(args.maxDepth)
-    traces = ExperimentTraces()
-    traces.readTracesFromFile(tracesFileName)
+
     solvingTimeout = int(args.timeout)
     #print(traces)
     timeout = int(args.timeout)
