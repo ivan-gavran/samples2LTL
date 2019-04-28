@@ -6,6 +6,7 @@ from z3 import *
 from smtEncoding.treeSATEncoding import TreeSATEncoding
 from smtEncoding.dagSATEncoding import DagSATEncoding
 from utils.Traces import ExperimentTraces
+
 from utils.SimpleTree import Formula
 
 
@@ -39,7 +40,7 @@ def run(encoder):
         else:
             finalDepth = traces.depthOfSolution
 
-        with open('log/solver.txt', 'w') as debugFile:
+        with open('log/solver.txt', 'w+') as debugFile:
             for i in range(1,finalDepth+1):
                 fg = encoder(i, traces)
                 fg.encodeFormula()
