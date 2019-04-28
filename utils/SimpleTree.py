@@ -2,6 +2,8 @@ import pdb
 import re
 from lark import Lark, Transformer
 symmetric_operators = ["&", "|"]
+binary_operators = ["&", "|", "U","->"]
+unary_operators = ["X", "F", "G", "!"]
 class SimpleTree:
     def __init__(self, label = "dummy"):
         self.left = None
@@ -106,17 +108,82 @@ class Formula(SimpleTree):
             else:
                 return self.label < other.label
 
-    def normalize(self):
-        temp = None
-        if self._isLeaf():
-            return
-        if not self.left < self.right:
-            temp = self.right
-            self.right = self.left
-            self.left = temp
-            self.left.normalize()
-            self.right.normalize()
-    
+    """
+       normalization in an incomplete method to eliminate equivalent formulas
+       """
+
+    @classmethod
+    def normalize(cls, f):
+
+        if f is None:
+            return None
+        if f._isLeaf():
+            return Formula([f.label, f.left, f.right])
+        fLeft = Formula.normalize(f.left)
+        fRight = Formula.normalize(f.right)
+
+        if fLeft.label == "true":
+            if f.label in ['|', 'F', 'G', 'X']:
+                return Formula("true")
+            if f.label in ["&", "->"]:
+                return Formula.normalize(fRight)
+            if f.label == "!":
+                return Formula("false")
+            if f.label == "U":
+                return Formula.normalize(Formula(["F", fRight, None]))
+
+        if fLeft.label == "false":
+            if f.label in ['->', '!']:
+                return Formula["true"]
+            if f.label in ['&', 'F', 'G', 'X']:
+                return Formula["false"]
+            if f.label in ['|', 'U']:
+                return Formula.normalize(fRight)
+
+        if not fRight is None:
+            if fRight.label == "true":
+                if f.label in ['|', "->", 'U']:
+                    return Formula("true")
+                if f.label in ["&"]:
+                    return Formula.normalize(fLeft)
+
+            if fRight.label == "false":
+                if f.label in []:
+                    return Formula["true"]
+                if f.label in ['&', 'U']:
+                    return Formula["false"]
+                if f.label in ['|']:
+                    return Formula.normalize(fRight)
+                if f.label in ['->']:
+                    return Formula.normalize(Formula(["!", fRight, None]))
+
+        # elimiting p&p and similar
+        if fLeft == fRight:
+            if f.label in ['&', 'U', '|']:
+                return Formula.normalize(fLeft)
+            else:
+                return Formula("true")
+
+        # eliminating Fp U p and !p U p
+        if f.label == 'U':
+            if fLeft.label == 'F' or fLeft.label == '!':
+                fLeftLeft = Formula.normalize(fLeft.left)
+                if fLeftLeft == fRight:
+                    return Formula.normalize(Formula(['F', fLeftLeft]))
+            if fRight.label == 'F':
+                fRightLeft = Formula.normalize(fRight.left)
+                if fRightLeft == fLeft:
+                    return fRight
+
+        if f.label == 'F' and fLeft.label == 'F':
+            return fLeft
+
+        # if there is p | q, don't add q | p
+        if f.label in symmetric_operators and not fLeft < fRight:
+            return Formula([f.label, fRight, fLeft])
+        return Formula([f.label, fLeft, fRight])
+
+
     @classmethod
     def convertTextToFormula(cls, formulaText):
         
@@ -151,6 +218,20 @@ class Formula(SimpleTree):
         
         f = TreeToFormula().transform(tree)
         return f
+
+    def prettyPrint(self, top=False):
+        if top is True:
+            lb = ""
+            rb = ""
+        else:
+            lb = "("
+            rb = ")"
+        if self._isLeaf():
+            return self.label
+        if self.label in unary_operators:
+            return lb + self.label + self.left.prettyPrint() + rb
+        if self.label in binary_operators:
+            return lb + self.left.prettyPrint() + self.label + self.right.prettyPrint() + rb
     
     
     
