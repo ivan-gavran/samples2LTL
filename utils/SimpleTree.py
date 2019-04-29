@@ -255,15 +255,15 @@ class Formula(SimpleTree):
     
     def getSetOfSubformulas(self):
         if self.left == None and self.right == None:
-            return [repr(self)]
+            return [self]
         leftValue = []
         rightValue = []
         if self.left != None:
             leftValue = self.left.getSetOfSubformulas()
         if self.right != None:
             rightValue = self.right.getSetOfSubformulas()
-        return list(set([repr(self)] + leftValue + rightValue))
-        
+        return list(set([self] + leftValue + rightValue))
+
              
 
 class TreeToFormula(Transformer):

@@ -6,6 +6,16 @@ import traceback
 import logging
 from utils.SimpleTree import Formula
 
+
+def satisfiability_counterexample_on_bounded_trace(test_formula, literals,
+                                                   init_part_length,
+                                                   lasso_part_length, encoder,
+                                                   operators):
+
+    fg = encoder( test_formula, init_part_length, lasso_part_length, operators, literals)
+    fg.encodeFormula()
+
+
 def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
     results = []
     i = startValue
@@ -22,13 +32,13 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
             solverModel = fg.solver.model()
             formula = fg.reconstructWholeFormula(solverModel)
             logging.info("found formula {}".format(formula.prettyPrint()))
-            #print("found formula {}".format(formula))
+            # print("found formula {}".format(formula))
             formula = Formula.normalize(formula)
             logging.info("normalized formula {}".format(formula))
             if formula not in results:
                 results.append(formula)
 
-            #prevent current result from being found again
+            # prevent current result from being found again
             block = []
             # pdb.set_trace()
             # print(m)
@@ -49,7 +59,3 @@ def get_models(finalDepth, traces, startValue, step, encoder, maxNumModels=1):
                 block.append(c != solverModel[d])
             fg.solver.add(Or(block))
     return results
-
-
-        
-    

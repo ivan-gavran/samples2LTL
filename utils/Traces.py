@@ -128,6 +128,7 @@ class ExperimentTraces:
                     self.maxLengthOfTraces = trace.lengthOfTrace
 
             try:
+                self.literals = self.acceptedTraces[0]
                 self.numVariables = self.acceptedTraces[0].numVariables
             except:
                 self.numVariables = self.rejectedTraces[0].numVariables
@@ -307,7 +308,9 @@ class ExperimentTraces:
         # an assumption that number of variables is the same across all the traces
         try:
             self.numVariables = self.acceptedTraces[0].numVariables
+            self.literals = self.acceptedTraces[0].literals
         except:
+            self.literals = self.rejectedTraces[0].literals
             self.numVariables = self.rejectedTraces[0].numVariables
         for trace in self.acceptedTraces + self.rejectedTraces:
             if trace.numVariables != self.numVariables:

@@ -1,15 +1,18 @@
 import sys
 from multiprocessing import Process, Queue
 from smtEncoding.dagSATEncoding import DagSATEncoding
+from smtEncoding.SATOfLTLEncoding import SATOfLTLEncoding
 from pytictoc import TicToc
 from z3 import *
 import pdb
 from utils import config
 from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
-from formulaBuilder.satQuerying import get_models
+from formulaBuilder.satQuerying import get_models, satisfiability_counterexample_on_bounded_trace
+from utils.SimpleTree import Formula
 
-def run_solver(finalDepth, traces, maxNumOfFormulas = 1, startValue=1, step=1, q = None, encoder=DagSATEncoding):
+
+def run_solver(finalDepth, traces, maxNumOfFormulas=1, startValue=1, step=1, q=None, encoder=DagSATEncoding):
     if q is not None:
         separate_process = True
     else:
@@ -17,7 +20,35 @@ def run_solver(finalDepth, traces, maxNumOfFormulas = 1, startValue=1, step=1, q
 
     t = TicToc()
     t.tic()
-    results = get_models(finalDepth, traces, startValue, step, encoder, maxNumOfFormulas)
+
+    try:
+        safety_restrictions = traces.safety_restrictions
+    except:
+        safety_restrictions = None
+    if safety_restrictions:
+        consistent_with_safety_restrictions = False
+        while not consistent_with_safety_restrictions:
+            results = get_models(finalDepth, traces, startValue, step, encoder, 1)
+            res_formula = results[0]
+            countexample_found = False
+            for safety_restriction in traces.safety_restrictions:
+
+                test_formula = Formula(["&", res_formula, Formula(["!", safety_restriction])])
+
+                init_part_length = 2
+                lasso_part_length = 2
+                counterexample = satisfiability_counterexample_on_bounded_trace(test_formula, traces.literals,
+                                                                                init_part_length,
+                                                                                lasso_part_length, SATOfLTLEncoding,
+                                                                                traces.operators)
+                if counterexample:
+                    countexample_found = True
+                    traces.rejected_traces.append(counterexample)
+            if not countexample_found:
+                consistent_with_safety_restrictions = True
+    else:
+        results = get_models(finalDepth, traces, startValue, step, encoder, maxNumOfFormulas)
+
     time_passed = t.tocvalue()
 
     if separate_process == True:
@@ -26,41 +57,42 @@ def run_solver(finalDepth, traces, maxNumOfFormulas = 1, startValue=1, step=1, q
         return [results, time_passed]
 
 
+def run_dt_solver(traces, subsetSize=config.DT_SUBSET_SIZE, txtFile="treeRepresentation.txt",
+                  strategy=config.DT_SAMPLING_STRATEGY, decreaseRate=config.DT_DECREASE_RATE, \
+                  repetitionsInsideSampling=config.DT_REPETITIONS_INSIDE_SAMPLING,
+                  restartsOfSampling=config.DT_RESTARTS_OF_SAMPLING, q=None, encoder=DagSATEncoding, ):
+    # try:
+    config.encoder = encoder
+    if q != None:
+        separateProcess = True
+    else:
+        separateProcess = False
+    ab = AtomBuilder()
+    ab.getExamplesFromTraces(traces)
+    # samplingStrategy = config.DT_SAMPLING_STRATEGY
+    samplingStrategy = strategy
+    # decreaseRate = config.DT_DECREASE_RATE
+    decreaseRate = decreaseRate
+    t = TicToc()
+    t.tic()
+    (atoms, atomTraceEvaluation) = ab.buildAtoms(sizeOfPSubset=subsetSize, strategy=samplingStrategy,
+                                                 sizeOfNSubset=subsetSize, probabilityDecreaseRate=decreaseRate, \
+                                                 numRepetitionsInsideSampling=repetitionsInsideSampling,
+                                                 numRestartsOfSampling=restartsOfSampling)
+    fb = DTFormulaBuilder(features=ab.atoms, data=ab.getMatrixRepresentation(), labels=ab.getLabels())
+    fb.createASeparatingFormula()
+    timePassed = t.tocvalue()
+    atomsFile = "atoms.txt"
+    treeTxtFile = txtFile
+    ab.writeAtomsIntoFile(atomsFile)
 
-def run_dt_solver(traces, subsetSize=config.DT_SUBSET_SIZE, txtFile="treeRepresentation.txt", strategy=config.DT_SAMPLING_STRATEGY, decreaseRate=config.DT_DECREASE_RATE,\
-                  repetitionsInsideSampling=config.DT_REPETITIONS_INSIDE_SAMPLING, restartsOfSampling=config.DT_RESTARTS_OF_SAMPLING, q = None, encoder=DagSATEncoding,):
-
-    #try:
-        config.encoder = encoder
-        if q != None:
-            separateProcess = True
-        else:
-            separateProcess = False
-        ab = AtomBuilder()
-        ab.getExamplesFromTraces(traces)
-        #samplingStrategy = config.DT_SAMPLING_STRATEGY
-        samplingStrategy = strategy
-        #decreaseRate = config.DT_DECREASE_RATE
-        decreaseRate = decreaseRate
-        t = TicToc()
-        t.tic()
-        (atoms, atomTraceEvaluation) = ab.buildAtoms(sizeOfPSubset=subsetSize, strategy = samplingStrategy, sizeOfNSubset=subsetSize, probabilityDecreaseRate=decreaseRate,\
-                      numRepetitionsInsideSampling=repetitionsInsideSampling, numRestartsOfSampling = restartsOfSampling)
-        fb = DTFormulaBuilder(features = ab.atoms, data = ab.getMatrixRepresentation(), labels = ab.getLabels())
-        fb.createASeparatingFormula()
-        timePassed = t.tocvalue()
-        atomsFile = "atoms.txt"
-        treeTxtFile = txtFile
-        ab.writeAtomsIntoFile(atomsFile)
-        
-        
-        numberOfUsedPrimitives = fb.numberOfNodes()
-        fb.tree_to_text_file(treeTxtFile)
+    numberOfUsedPrimitives = fb.numberOfNodes()
+    fb.tree_to_text_file(treeTxtFile)
     #    return (timePassed, len(atoms), numberOfUsedPrimitives)
-        if separateProcess == True:
-            q.put([timePassed, len(atoms), numberOfUsedPrimitives])
-        else:
-            return [timePassed, len(atoms), numberOfUsedPrimitives]
+    if separateProcess == True:
+        q.put([timePassed, len(atoms), numberOfUsedPrimitives])
+    else:
+        return [timePassed, len(atoms), numberOfUsedPrimitives]
 #     except Exception as e:
 #         print(e)
 #         sys.exit(1)
