@@ -1,6 +1,9 @@
 from z3 import *
 import pdb
 from utils.SimpleTree import SimpleTree, Formula
+import random
+from utils.Traces import Trace
+import logging
 
 class SATOfLTLEncoding:
     """
@@ -19,9 +22,9 @@ class SATOfLTLEncoding:
         #except for the operators, the nodes of the "syntax table" are additionally the propositional variables 
         
         if operators == None:
-            self.listOfOperators = defaultOperators
+            self.listOfOperators = list(defaultOperators)
         else:
-            self.listOfOperators = operators
+            self.listOfOperators = list(operators)
         if '!' not in self.listOfOperators:
             self.listOfOperators.append('!')
         if '&' not in self.listOfOperators:
@@ -46,13 +49,13 @@ class SATOfLTLEncoding:
         self.listOfVariables = self.literals
         self.variablesToIntMapping = {self.literals[i] : i for i in range(len(self.literals))}
         # pdb.set_trace()
-        self.lassStart = init_part_length
+        self.lassoStart = init_part_length
         self.traceLength = init_part_length + lasso_part_length
         self.listOfSubformulas = sorted(list(all_subformulas))
 
-        print(self.listOfSubformulas)
+        logging.info("subformulas of formula {0} are {1}".format(f, self.listOfSubformulas))
         self.indicesOfSubformulas = {self.listOfSubformulas[i] : i for i in range(len(self.listOfSubformulas))}
-        print(self.indicesOfSubformulas)
+        logging.debug(self.indicesOfSubformulas)
 
 
     def _assignIndicesToSubformulas(self, number_of_subformulas):
@@ -88,56 +91,45 @@ class SATOfLTLEncoding:
         self.y = { (i, timePoint) : Bool('y_'+str(i)+'_'+str(timePoint))\
                   for i in range(self.formulaDepth)\
                   for timePoint in range(self.traceLength)}
+
+        self.counterexampleTrace = {(var, tmstp) : Bool('cex_'+str(var)+"_"+str(tmstp))\
+                                    for var in self.listOfVariables\
+                                    for tmstp in range(self.traceLength)}
         
         
         self.solver.set(unsat_core=unsatCore)
 
-        #self.exactlyOneOperator()
+
         self.setOperatorValues()
-        pdb.set_trace()
-        self.firstOperatorVariable()
+
+
 
         self.propVariablesSemantics()
-         
+
+
         self.operatorsSemantics()
-        self.noDanglingVariables()
-        
-        self.solver.assert_and_track(And( [ self.y[(self.formulaDepth - 1, traceIdx, 0)] for traceIdx in range(len(self.traces.acceptedTraces))] ), 'accepted traces should be accepting')
-        self.solver.assert_and_track(And( [ Not(self.y[(self.formulaDepth - 1, traceIdx, 0)]) for traceIdx in range(len(self.traces.acceptedTraces), len(self.traces.acceptedTraces+self.traces.rejectedTraces))] ),\
-                                     'rejecting traces should be rejected')
+
+
+
+        self.solver.assert_and_track(Not(self.y[(self.formulaDepth-1, 0)]), "evaluation should be false")
+
         
         
     
     
     def propVariablesSemantics(self):
-        for i in range(self.formulaDepth):
-            for p in self.listOfVariables:
-                for traceIdx, tr in enumerate(self.traces.acceptedTraces + self.traces.rejectedTraces):
-                    self.solver.assert_and_track(Implies(self.x[(i, p)],\
-                                                          And([ self.y[(i,traceIdx, timestep)] if tr.traceVector[timestep][p] == True else Not(self.y[(i, traceIdx, timestep)])\
-                                                               for timestep in range(tr.lengthOfTrace)])),\
-                                                          "semantics of propositional variable depth_"+str(i)+' var _'+str(p)+'_trace_'+str(traceIdx))
-                    
-            
+
+        for (idx, subf) in enumerate(self.listOfSubformulas):
+            if subf.label in self.listOfVariables:
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] == self.counterexampleTrace[(subf.label, tmstp)] for tmstp in range(self.traceLength)]),
+                    "cex and y values connection at position {0} for var {1}".format(str(idx), subf.label)
+                )
+
 
         
     
-    def firstOperatorVariable(self):
-        self.solver.assert_and_track(Or([self.x[k] for k in self.x if k[0] == 0 and k[1] in self.listOfVariables]),\
-                                     'first operator a variable')
 
-    def noDanglingVariables(self):
-        if self.formulaDepth > 0:
-            self.solver.assert_and_track(
-                And([
-                    Or(
-                        AtLeast([self.l[(rowId, i)] for rowId in range(i+1, self.formulaDepth)]+ [1]),
-                        AtLeast([self.r[(rowId, i)] for rowId in range(i+1, self.formulaDepth)] + [1])
-                    )
-                    for i in range(self.formulaDepth - 1)]
-                ),
-                "no dangling variables"
-            )
     
     def setOperatorValues(self):
         #pdb.set_trace()
@@ -146,171 +138,152 @@ class SATOfLTLEncoding:
             self.solver.add(And([Not(self.x[(idx, operator)]) for operator in self.operatorsAndVariables if not operator == subf.label]))
             if not subf.left is None:
                 self.solver.assert_and_track(self.l[(idx, self.indicesOfSubformulas[subf.left])], "left_child_of_"+str(subf.label)+"_is_"+subf.left.label)
-                self.solver.add(And([Not(self.l[(idx, i)]) for i in range(idx)]))
+                self.solver.add(And([Not(self.l[(idx, i)]) for i in range(idx) if not i == self.indicesOfSubformulas[subf.left]]))
             else:
                 self.solver.assert_and_track(And([Not(self.l[(idx, i)]) for i in range(idx)]), "formula_"+str(idx)+"_no_left_child")
 
             if not subf.right is None:
                 self.solver.assert_and_track(self.r[(idx, self.indicesOfSubformulas[subf.right])], "right_child_of_"+str(idx)+"_is_"+str(self.indicesOfSubformulas[subf.right]))
-                self.solver.add(And([Not(self.r[(idx, i)]) for i in range(idx)]))
+                self.solver.add(And([Not(self.r[(idx, i)]) for i in range(idx)if not i == self.indicesOfSubformulas[subf.right]]))
             else:
                 self.solver.assert_and_track(And([Not(self.r[(idx, i)]) for i in range(idx)]), "formula_"+str(idx)+"_no_right_child")
+
+
+
+    def _nextPos(self, currentPos):
+        if currentPos == self.traceLength - 1:
+            return self.lassoStart
+        else:
+            return currentPos + 1
+    def _futurePos(self, currentPos):
+        futurePositions = []
+        alreadyGathered = set()
+        while currentPos not in alreadyGathered:
+            futurePositions.append(currentPos)
+            alreadyGathered.add(currentPos)
+            currentPos = self._nextPos(currentPos)
+        # always add a new one so that all the next-relations are captured
+        futurePositions.append(currentPos)
+        return futurePositions
 
     def operatorsSemantics(self):
 
 
-        for traceIdx, tr in enumerate(self.traces.acceptedTraces + self.traces.rejectedTraces):
-            for i in range(1, self.formulaDepth):
-                
-                if '|' in self.listOfOperators:
-                    #disjunction
-                     self.solver.assert_and_track(Implies(self.x[(i, '|')],\
-                                                            And([ Implies(\
-                                                                           And(\
-                                                                               [self.l[i, leftArg], self.r[i, rightArg]]\
-                                                                               ),\
-                                                                           And(\
-                                                                               [ self.y[(i, traceIdx, timestep)]\
-                                                                                ==\
-                                                                                Or(\
-                                                                                   [ self.y[(leftArg, traceIdx, timestep)],\
-                                                                                    self.y[(rightArg, traceIdx, timestep)]]\
-                                                                                   )\
-                                                                                 for timestep in range(tr.lengthOfTrace)]\
-                                                                               )\
-                                                                           )\
-                                                                          for leftArg in range(i) for rightArg in range(i) ])),\
-                                                             'semantics of disjunction for trace %d and depth %d'%(traceIdx, i))
-                if '&' in self.listOfOperators:
-                      #conjunction
-                     self.solver.assert_and_track(Implies(self.x[(i, '&')],\
-                                                            And([ Implies(\
-                                                                           And(\
-                                                                               [self.l[i, leftArg], self.r[i, rightArg]]\
-                                                                               ),\
-                                                                           And(\
-                                                                               [ self.y[(i, traceIdx, timestep)]\
-                                                                                ==\
-                                                                                And(\
-                                                                                   [ self.y[(leftArg, traceIdx, timestep)],\
-                                                                                    self.y[(rightArg, traceIdx, timestep)]]\
-                                                                                   )\
-                                                                                 for timestep in range(tr.lengthOfTrace)]\
-                                                                               )\
-                                                                           )\
-                                                                          for leftArg in range(i) for rightArg in range(i) ])),\
-                                                             'semantics of conjunction for trace %d and depth %d'%(traceIdx, i))
-                     
-                if '->' in self.listOfOperators:
-                       
-                      #implication
-                     self.solver.assert_and_track(Implies(self.x[(i, '->')],\
-                                                            And([ Implies(\
-                                                                           And(\
-                                                                               [self.l[i, leftArg], self.r[i, rightArg]]\
-                                                                               ),\
-                                                                           And(\
-                                                                               [ self.y[(i, traceIdx, timestep)]\
-                                                                                ==\
-                                                                                Implies(\
-                                                                                  self.y[(leftArg, traceIdx, timestep)],\
-                                                                                  self.y[(rightArg, traceIdx, timestep)]\
-                                                                                   )\
-                                                                                 for timestep in range(tr.lengthOfTrace)]\
-                                                                               )\
-                                                                           )\
-                                                                          for leftArg in range(i) for rightArg in range(i) ])),\
-                                                             'semantics of implication for trace %d and depth %d'%(traceIdx, i))
-                if '!' in self.listOfOperators:
-                      #negation
-                     self.solver.assert_and_track(Implies(self.x[(i, '!')],\
-                                                           And([\
-                                                               Implies(\
-                                                                         self.l[(i,onlyArg)],\
-                                                                         And([\
-                                                                              self.y[(i, traceIdx, timestep)] == Not(self.y[(onlyArg, traceIdx, timestep)])\
-                                                                              for timestep in range(tr.lengthOfTrace)\
-                                                                              ])\
-                                                                          )\
-                                                               for onlyArg in range(i)\
-                                                               ])\
-                                                           ),\
-                                                   'semantics of negation for trace %d and depth %d' % (traceIdx, i)\
-                                                   )
-                if 'G' in self.listOfOperators:
-                      #globally                
-                     self.solver.assert_and_track(Implies(self.x[(i, 'G')],\
-                                                           And([\
-                                                               Implies(\
-                                                                         self.l[(i,onlyArg)],\
-                                                                         And([\
-                                                                              self.y[(i, traceIdx, timestep)] ==\
-                                                                              And([self.y[(onlyArg, traceIdx, futureTimestep)] for futureTimestep in tr.futurePos(timestep) ])\
-                                                                              for timestep in range(tr.lengthOfTrace)\
-                                                                              ])\
-                                                                          )\
-                                                               for onlyArg in range(i)\
-                                                               ])\
-                                                           ),\
-                                                   'semantics of globally operator for trace %d and depth %d' % (traceIdx, i)\
-                                                   )
 
-                if 'F' in self.listOfOperators:                  
-                      #finally                
-                     self.solver.assert_and_track(Implies(self.x[(i, 'F')],\
-                                                           And([\
-                                                               Implies(\
-                                                                         self.l[(i,onlyArg)],\
-                                                                         And([\
-                                                                              self.y[(i, traceIdx, timestep)] ==\
-                                                                              Or([self.y[(onlyArg, traceIdx, futureTimestep)] for futureTimestep in tr.futurePos(timestep) ])\
-                                                                              for timestep in range(tr.lengthOfTrace)\
-                                                                              ])\
-                                                                          )\
-                                                               for onlyArg in range(i)\
-                                                               ])\
-                                                           ),\
-                                                   'semantics of finally operator for trace %d and depth %d' % (traceIdx, i)\
-                                                   )
-                  
-                if 'X' in self.listOfOperators:
-                      #next                
-                     self.solver.assert_and_track(Implies(self.x[(i, 'X')],\
-                                                           And([\
-                                                               Implies(\
-                                                                         self.l[(i,onlyArg)],\
-                                                                         And([\
-                                                                              self.y[(i, traceIdx, timestep)] ==\
-                                                                              self.y[(onlyArg, traceIdx, tr.nextPos(timestep))]\
-                                                                              for timestep in range(tr.lengthOfTrace)\
-                                                                              ])\
-                                                                          )\
-                                                               for onlyArg in range(i)\
-                                                               ])\
-                                                           ),\
-                                                   'semantics of neXt operator for trace %d and depth %d' % (traceIdx, i)\
-                                                   )
-                if 'U' in self.listOfOperators:
-                    #until
-                     self.solver.assert_and_track(Implies(self.x[(i, 'U')],\
-                                                          And([ Implies(\
-                                                                         And(\
-                                                                             [self.l[i, leftArg], self.r[i, rightArg]]\
-                                                                             ),\
-                                                                         And([\
-                                                                            self.y[(i, traceIdx, timestep)] ==\
-                                                                            Or([\
-                                                                                And(\
-                                                                                    [self.y[(leftArg, traceIdx, futurePos)] for futurePos in tr.futurePos(timestep)[0:qIndex]]+\
-                                                                                    [self.y[(rightArg, traceIdx, tr.futurePos(timestep)[qIndex])]]\
-                                                                                    )\
-                                                                                for qIndex in range(len(tr.futurePos(timestep)))\
-                                                                                ])\
-                                                                            for timestep in range(tr.lengthOfTrace)]\
-                                                                             )\
-                                                                         )\
-                                                                for leftArg in range(i) for rightArg in range(i) ])),\
-                                                    'semantics of Until operator for trace %d and depth %d'%(traceIdx, i))
+        for (idx, subf) in enumerate(self.listOfSubformulas):
+            explanation = "operator {0} at depth {1}".format(str(subf.label), idx)
+            if subf.label == "|":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         Or(\
+                            self.y[(self.indicesOfSubformulas[subf.left], tmstp)],
+                             self.y[(self.indicesOfSubformulas[subf.right], tmstp)]
+                        )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "false":
+                self.solver.assert_and_track(
+                    And([Not(self.y[(idx, tmstp)])
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "true":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)]
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "&":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         And( \
+                             self.y[(self.indicesOfSubformulas[subf.left], tmstp)],
+                             self.y[(self.indicesOfSubformulas[subf.right], tmstp)]
+                         )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "!":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         Not( \
+                             self.y[(self.indicesOfSubformulas[subf.left], tmstp)]
+                         )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+            elif subf.label == "->":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         Implies( \
+                             self.y[(self.indicesOfSubformulas[subf.left], tmstp)],
+                             self.y[(self.indicesOfSubformulas[subf.right], tmstp)]
+                         )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "G":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         And( [\
+                              self.y[(self.indicesOfSubformulas[subf.left], futureTmstp)]
+                             for futureTmstp in self._futurePos(tmstp)]
+                         )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "F":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] ==
+                         Or( [\
+                              self.y[(self.indicesOfSubformulas[subf.left], futureTmstp)]
+                             for futureTmstp in self._futurePos(tmstp)]
+                         )
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "X":
+                self.solver.assert_and_track(
+                    And([self.y[(idx, tmstp)] == self.y[(idx, self._nextPos(tmstp))]
+                         for tmstp in range(self.traceLength)
+                         ]),
+                    explanation
+                )
+
+            elif subf.label == "U":
+                self.solver.assert_and_track(
+                    And([ \
+                        self.y[(idx, tmstp)] == \
+                        Or([ \
+                            And( \
+                                [self.y[(self.indicesOfSubformulas[subf.left], futurePos)] for futurePos in self._futurePos(tmstp)[0:qIndex]] + \
+                                [self.y[(self.indicesOfSubformulas[subf.right], self._futurePos(tmstp)[qIndex])]] \
+                                ) \
+                            for qIndex in range(len(self._futurePos(tmstp))) \
+                            ]) \
+                        for tmstp in range(self.traceLength)] \
+                        ),
+                        explanation
+                )
+
+
+
     def reconstructWholeFormula(self, model):
         return self.reconstructFormula(self.formulaDepth-1, model)
 
@@ -334,7 +307,39 @@ class SATOfLTLEncoding:
             leftChild = getValue(rowId, self.l)
             rightChild = getValue(rowId, self.r)
             return Formula([operator, self.reconstructFormula(leftChild, model), self.reconstructFormula(rightChild, model)])
-        
+
+    def reconstructCounterexampleTraces(self, model, maxNumOfCounterexamples = 1):
+        counterexamples = []
+        for i in range(maxNumOfCounterexamples):
+            counterexampleTraceVector = []
+
+            for tmstp in range(self.traceLength):
+                singleTimestepData = []
+                for var in self.listOfVariables:
+
+                    g = model[self.counterexampleTrace[(var, tmstp)]]
+
+                    if g is None:
+                        el = random.randint(0,1)
+                    else:
+                        if g == True:
+                            el = 1
+                        elif g == False:
+                            el = 0
+                        else:
+                            pdb.set_trace()
+                        logging.debug("counterexample: {0} at tmstp {1} has to be {2}".format(var, str(tmstp), str(el)))
+                    singleTimestepData.append(el)
+
+                counterexampleTraceVector.append(singleTimestepData)
+            generatedTrace = Trace(counterexampleTraceVector, lassoStart=self.lassoStart, literals=self.listOfVariables)
+
+            counterexamples.append(generatedTrace)
+        return counterexamples
+
+
+
+
     
         
       

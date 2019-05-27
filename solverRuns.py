@@ -8,11 +8,13 @@ import pdb
 from utils import config
 from formulaBuilder.DTFormulaBuilder import DTFormulaBuilder
 from formulaBuilder.AtomBuilder import AtomBuilder, AtomBuildingStrategy
-from formulaBuilder.satQuerying import get_models, satisfiability_counterexample_on_bounded_trace
+from formulaBuilder.satQuerying import get_models, get_models_with_safety_restrictions
 from utils.SimpleTree import Formula
 
 
 def run_solver(finalDepth, traces, maxNumOfFormulas=1, startValue=1, step=1, q=None, encoder=DagSATEncoding):
+
+
     if q is not None:
         separate_process = True
     else:
@@ -26,26 +28,8 @@ def run_solver(finalDepth, traces, maxNumOfFormulas=1, startValue=1, step=1, q=N
     except:
         safety_restrictions = None
     if safety_restrictions:
-        consistent_with_safety_restrictions = False
-        while not consistent_with_safety_restrictions:
-            results = get_models(finalDepth, traces, startValue, step, encoder, 1)
-            res_formula = results[0]
-            countexample_found = False
-            for safety_restriction in traces.safety_restrictions:
-
-                test_formula = Formula(["&", res_formula, Formula(["!", safety_restriction])])
-
-                init_part_length = 2
-                lasso_part_length = 2
-                counterexample = satisfiability_counterexample_on_bounded_trace(test_formula, traces.literals,
-                                                                                init_part_length,
-                                                                                lasso_part_length, SATOfLTLEncoding,
-                                                                                traces.operators)
-                if counterexample:
-                    countexample_found = True
-                    traces.rejected_traces.append(counterexample)
-            if not countexample_found:
-                consistent_with_safety_restrictions = True
+        results = get_models_with_safety_restrictions(safety_restrictions=safety_restrictions, traces = traces, final_depth=finalDepth,
+                                                      literals=traces.literals, encoder=encoder, operators=traces.operators, max_num_solutions=maxNumOfFormulas)
     else:
         results = get_models(finalDepth, traces, startValue, step, encoder, maxNumOfFormulas)
 

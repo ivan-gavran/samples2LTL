@@ -1,9 +1,15 @@
 # traces2LTL
 
-The goal is to learn an LTL formula that separates set of positive (P) and negative (N) traces. The resulting formula should be a model for every trace in P and should not be a model for any of the traces from N.
-There are two methods in this repository - one that encodes the problem as a satisfiability of Boolean formula and gives it to Z3 solver, and the other that is based on decision tree learning.
+This branch implements learning LTL formulas from the set of positive examples (P) and a set of safety
+formulas (f_1, f_2,...,f_k). The end goal is to learn a formula that is modeled by all the examples from P and
+that implies all safety formulas.
 
-Webdemo is available at [flie.mpi-sws.org](https://flie.mpi-sws.org/)
+The approach was to learn a formula consistent with P, and then find a counterexample on the `a<->b`
+ultimately periodic trace, where `a` is length of the initial part and `b` is length of the lasso part.
+
+It turns out that the approach is mostly useless (at least for the small size of set P): there are many formulas
+consistent with P that are simply avoiding saying anything about the safety restrictions. Alternatively,
+
  
 ## Setup
 - setup a virtualenvironment for python 3.6 ([link](http://virtualenvwrapper.readthedocs.io/en/latest/)) and activate it (`workon ...`)
@@ -11,24 +17,23 @@ Webdemo is available at [flie.mpi-sws.org](https://flie.mpi-sws.org/)
 - install Z3 with python bindings ([link](https://github.com/Z3Prover/z3#python))
 
 ## Running
-- to test on a single example (set of positive and negative traces), runt `python experiment.py` with `--test_dt_method` or `--test_sat_method` (or both) and with the path to the file with the example provided as an argument `--traces` 
-- to test on set of examples, one can run `python measureSolvingTime.py` with `--test_dt_method` or `--test_sat_method` and with the path to the folder containing the examples provided as an argument `--test_traces_folder`
-- running `python measureSolvingTime.py --test_dt_method --test_sat_method` with no additional parameters takes the traces from `traces/generatedTest` and produces results in `experiments/test/`
-- additionally, to make sure everything runs as it should one can run `pytest`
+- to test on a single example, run `python experiment.py --test_sat_method --max_num_formulas=5`.
+That will learn on the examples defined in the file `traces/dummy.json`. If you want to test it on a different file,
+add it to the argument list, e.g. ` python experiment.py --traces=traces/anotherFile.json --test_sat_method`
 
 ### Experiment Trace File Format
-Experiment traces file consists of:
-  - accepted traces
-  - rejected traces
-  - operators that a program can use
-  - max depth to explore
-  - the expected formula that describes this trace
+ Options are specified in the JSON format. (Don't forget commas between every two properties!)
 
-An example trace looks like this
-`1,1;1,0;0,1::1` and means that there are two variables (`x0` and `x1`) whose values in different timesteps are
- - x0 : 1,(1,0)*  
- - x1: 1,(0,1)*
+The properties to specify are:
 
- The value after separator `::` denotes the start of lasso that is being repeated forever. If it is missing, it assumes that the whole sequence is repeated indefinitely.
+   - literals: propositional variables that will be part of positive or negative traces (not obligatory. If omitted, will be filled by everything occurring in traces)
+   - positive: traces (paths) that the formula should model. They are formatted as the initial and the lasso part, separated by a vertical bar (|). Both parts consist of timesteps separated by a semi-colon (;). Each timestep contains the literals (propositional variables) that hold true in it, separated by a comma (,). If none of the literals is true in a timestep, it should be either empty, or a reserved word "null".
+   - safety-restrictions: a list of formulas that should not be satisfied. (i.e., a found formula should imply their negation)
+   - number-of-formulas: how many formulas to find (counts when to stop searching, even if none is found that implies negations of all safety restrictions)
+   - max-depth-of-formula: maximum depth of any formula found by flie (default: 5)
+   - operators: a list of LTL operators allowed in a formula (default: ["F", "->", "&", "|", "U", "G", "X"])
+   
+An example file is [here](traces/dummy.json) 
+
 
  

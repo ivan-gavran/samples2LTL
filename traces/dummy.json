@@ -6,7 +6,8 @@
   ],
   "positive": [
     "p,q; p; null| p",
-    "null; q; null| p"
+    "null; q; null| p",
+    "null; r; null | r"
   ],
   "number-of-formulas": 3,
   "max-depth-of-formula": 4,
@@ -17,9 +18,11 @@
     "|",
     "U",
     "G",
-    "X"
+    "X",
+    "!"
   ],
   "safety-restrictions": [
-    "G(!(r))"
+    "!(r)",
+    "!(G(q))"  
   ]
 }

@@ -33,8 +33,6 @@ class DagSATEncoding:
         #self.noneOperator = 'none' # a none operator is not needed in this encoding
         
         self.solver = Solver()
-        
-        
         self.formulaDepth = D
         
         
@@ -68,7 +66,7 @@ class DagSATEncoding:
     """
     def encodeFormula(self, unsatCore=True):
         self.operatorsAndVariables = self.listOfOperators + self.listOfVariables
-        
+
         self.x = { (i, o) : Bool('x_'+str(i)+'_'+str(o)) for i in range(self.formulaDepth) for o in self.operatorsAndVariables }
         self.l = {(parentOperator, childOperator) : Bool('l_'+str(parentOperator)+'_'+str(childOperator))\
                                                  for parentOperator in range(1, self.formulaDepth)\
