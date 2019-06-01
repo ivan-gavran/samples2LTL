@@ -94,6 +94,7 @@ class Formula(SimpleTree):
             super().__init__(formulaArg)
 
     def __lt__(self, other):
+
         if self.getDepth() < other.getDepth():
             return True
         elif self.getDepth() > other.getDepth():
@@ -101,10 +102,17 @@ class Formula(SimpleTree):
         else:
             if self._isLeaf() and other._isLeaf():
                 return self.label < other.label
+
             if self.left != other.left:
                 return self.left < other.left
-            elif self.right != other.right:
+
+            if self.right is None:
+                return False
+            if other.right is None:
+                return True
+            if self.right != other.right:
                 return self.right < other.right
+
             else:
                 return self.label < other.label
 
@@ -153,7 +161,7 @@ class Formula(SimpleTree):
                 if f.label in ['&', 'U']:
                     return Formula["false"]
                 if f.label in ['|']:
-                    return Formula.normalize(fRight)
+                    return Formula.normalize(fLeft)
                 if f.label in ['->']:
                     return Formula.normalize(Formula(["!", fRight, None]))
 
@@ -181,6 +189,7 @@ class Formula(SimpleTree):
         # if there is p | q, don't add q | p
         if f.label in symmetric_operators and not fLeft < fRight:
             return Formula([f.label, fRight, fLeft])
+
         return Formula([f.label, fLeft, fRight])
 
 
