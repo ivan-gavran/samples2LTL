@@ -3,7 +3,7 @@ graphviz==0.8.2
 lark-parser==0.5.3
 numpy==1.14.2
 pandas==0.22.0
-py==1.4.34
+py==1.10.0
 pytest==3.2.3
 python-dateutil==2.7.2
 pytictoc==1.4.0
